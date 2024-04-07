@@ -7,7 +7,7 @@ import NotFoundPage from './pages/NotFoundPage';
 const App = () => {
   return (
     <BrowserRouter>
-      <div className="relative h-dvh w-screen overflow-hidden bg-slate-800 text-slate-500">
+      <div className="relative h-dvh w-screen overflow-hidden bg-slate-800 text-slate-400">
         <Routes>
           <Route index element={<LandingPage />} />
           <Route path="login" element={<LoginPage />} />

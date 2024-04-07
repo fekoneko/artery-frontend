@@ -27,7 +27,7 @@ const formFieldData: FormFieldInfo<FormFields>[] = [
   {
     name: 'confirmation',
     type: 'password',
-    label: 'Confirm the password',
+    label: 'Confirm password',
     options: { required: 'Password confirmation is required' },
   },
 ];
