@@ -1,30 +1,21 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
-import Reg from './pages/Reg';
-import Auth from './pages/Auth';
-import NotFound from './pages/NotFound';
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <LandingPage />,
-    errorElement: <NotFound />
-  },
-  {
-    path: '/reg',
-    element: <Reg />
-  },
-  {
-    path:  '/auth',
-    element: <Auth />
-  }
-])
+import LoginPage from './pages/LoginPage';
+import RegistrationPage from './pages/RegistrationPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 const App = () => {
   return (
-    <div className="relative h-dvh w-screen overflow-hidden bg-slate-800 text-slate-500">
-      <RouterProvider router={router} />
-    </div>
+    <BrowserRouter>
+      <div className="relative h-dvh w-screen overflow-hidden bg-slate-800 text-slate-500">
+        <Routes>
+          <Route index element={<LandingPage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<RegistrationPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 };
 export default App;

@@ -3,10 +3,12 @@ import LandingActionButton from '../components/LandingPage/LandingActionButton';
 import LandingSeparationLine from '../components/LandingPage/LandingSeparationLine';
 import LandingTitle from '../components/LandingPage/LandingTitle';
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {
   const mainRef = useRef<HTMLElement>(null!);
   const { scrollY } = useScroll({ container: mainRef, default: { immediate: true } });
+  const navigate = useNavigate();
 
   return (
     <main
@@ -30,7 +32,7 @@ const LandingPage = () => {
           <h2 className="bg-gradient-green mb-8 bg-clip-text text-center text-3xl font-bold">
             Твой товар – твои правила
           </h2>
-          <LandingActionButton>Поехали</LandingActionButton>
+          <LandingActionButton onClick={() => navigate('/register')}>Поехали</LandingActionButton>
         </animated.div>
       </header>
       <LandingSeparationLine />
