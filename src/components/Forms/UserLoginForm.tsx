@@ -1,5 +1,8 @@
+import { useCallback } from 'react';
+import { useLogin } from '../../lib/auth';
 import { emailRegExp } from '../../lib/validation';
 import Form, { FormFieldInfo } from './Form';
+import { SubmitHandler } from 'react-hook-form';
 
 export interface FormFields {
   email: string;
@@ -25,12 +28,15 @@ const formFieldData: FormFieldInfo<FormFields>[] = [
 ];
 
 const LoginForm = () => {
-  return (
-    <Form
-      formFieldData={formFieldData}
-      submitTitle="Войти"
-      onSubmit={(data) => console.log(data)}
-    />
+  const login = useLogin();
+
+  const onSubmit = useCallback<SubmitHandler<FormFields>>(
+    (formData) => {
+      login.mutate({ email: formData.email, password: formData.password });
+    },
+    [login],
   );
+
+  return <Form formFieldData={formFieldData} submitTitle="Войти" onSubmit={onSubmit} />;
 };
 export default LoginForm;

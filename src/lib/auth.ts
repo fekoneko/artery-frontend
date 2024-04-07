@@ -1,12 +1,5 @@
 import { configureAuth } from 'react-query-auth';
-import {
-  getUserProfile,
-  registerWithEmailAndPassword,
-  loginWithEmailAndPassword,
-  AuthResponse,
-  logout,
-  User,
-} from './api';
+import { getUserProfile, register, login, AuthResponse, logout, User } from './api';
 
 export type LoginCredentials = {
   email: string;
@@ -17,6 +10,7 @@ export type RegisterCredentials = {
   email: string;
   name: string;
   password: string;
+  isCompany: boolean;
 };
 
 async function handleUserResponse(data: AuthResponse) {
@@ -31,13 +25,13 @@ async function userFn() {
 }
 
 async function loginFn(data: LoginCredentials) {
-  const response = await loginWithEmailAndPassword(data);
+  const response = await login(data);
   const user = await handleUserResponse(response);
   return user;
 }
 
 async function registerFn(data: RegisterCredentials) {
-  const response = await registerWithEmailAndPassword(data);
+  const response = await register(data);
   const user = await handleUserResponse(response);
   return user;
 }

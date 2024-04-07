@@ -1,3 +1,5 @@
+import { LoginCredentials, RegisterCredentials } from './auth';
+
 export interface AuthResponse {
   user: User;
   jwt: string;
@@ -29,18 +31,21 @@ export function getUserProfile(): Promise<{ user: User | undefined }> {
   }).then(handleApiResponse);
 }
 
-export function loginWithEmailAndPassword(data: unknown): Promise<AuthResponse> {
+export function login(data: LoginCredentials): Promise<AuthResponse> {
   return fetch(import.meta.env.VITE_API_URL + '/auth/login', {
     method: 'POST',
     body: JSON.stringify(data),
   }).then(handleApiResponse);
 }
 
-export function registerWithEmailAndPassword(data: unknown): Promise<AuthResponse> {
-  return fetch(import.meta.env.VITE_API_URL + '/auth/register', {
-    method: 'POST',
-    body: JSON.stringify(data),
-  }).then(handleApiResponse);
+export function register(data: RegisterCredentials): Promise<AuthResponse> {
+  return fetch(
+    import.meta.env.VITE_API_URL + '/auth/register/' + (data.isCompany ? 'company' : 'user'),
+    {
+      method: 'POST',
+      body: JSON.stringify(data),
+    },
+  ).then(handleApiResponse);
 }
 
 export function logout(): Promise<{ message: string }> {
