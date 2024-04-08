@@ -44,10 +44,12 @@ const Navigation = () => {
               </li>
             ))}
           </ul>
-          <animated.div
-            style={selectorSpring}
-            className="pointer-events-none absolute top-0 h-10 rounded-lg bg-teal-100/5"
-          />
+          {activeIndex !== -1 && (
+            <animated.div
+              style={selectorSpring}
+              className="pointer-events-none absolute top-0 h-10 rounded-lg bg-teal-100/5"
+            />
+          )}
         </div>
       </nav>
     </>
