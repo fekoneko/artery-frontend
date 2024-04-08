@@ -1,4 +1,10 @@
+import GoodsList from "../../components/Goods/GoodsList";
+import Types from "../../components/Goods/Types";
+
 const FeedPage = () => {
-  return <main>FeedPage</main>;
+  return <main>
+            <Types />
+            <GoodsList />
+          </main>;
 };
 export default FeedPage;

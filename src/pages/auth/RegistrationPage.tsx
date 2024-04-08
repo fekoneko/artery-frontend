@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import UserRegistrationForm from '../../components/forms/UserRegistrationForm';
-import CompanyRegistrationForm from '../../components/forms/CompanyRegistrationForm';
-import LeaveFormButton from '../../components/forms/LeaveFormButton';
+import UserRegistrationForm from '../../components/Forms/UserRegistrationForm';
+import CompanyRegistrationForm from '../../components/Forms/CompanyRegistrationForm';
+import LeaveFormButton from '../../components/Forms/LeaveFormButton';
 
 const RegistrationPage = () => {
   const [registrationMode, setRegistrationMode] = useState<'client' | 'company'>('client');
