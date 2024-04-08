@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import UserRegistrationForm from '../components/Forms/UserRegistrationForm';
-import CompanyRegistrationForm from '../components/Forms/CompanyRegistrationForm';
-import LeaveFormButton from '../components/Forms/LeaveFormButton';
+import UserRegistrationForm from '../../components/Forms/UserRegistrationForm';
+import CompanyRegistrationForm from '../../components/Forms/CompanyRegistrationForm';
+import LeaveFormButton from '../../components/Forms/LeaveFormButton';
 
 const RegistrationPage = () => {
   const [registrationMode, setRegistrationMode] = useState<'user' | 'company'>('user');
 
   return (
-    <div className="flex size-full items-center justify-center">
+    <main className="flex size-full items-center justify-center">
       <LeaveFormButton />
 
       <div className="flex min-w-[50%] max-w-[80%] flex-col gap-4 rounded-lg border-2 border-slate-200 p-4 shadow-xl">
@@ -37,7 +37,7 @@ const RegistrationPage = () => {
           Уже зарегистрированы? <Link to="/login">Войдите</Link>
         </p>
       </div>
-    </div>
+    </main>
   );
 };
 

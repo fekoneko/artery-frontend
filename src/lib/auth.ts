@@ -1,5 +1,5 @@
 import { configureAuth } from 'react-query-auth';
-import { getUserProfile, register, login, AuthResponse, logout, User } from './api';
+import { getUserProfile, register, login, AuthResponse, logout, User, FetchError } from './api';
 
 export type LoginCredentials = {
   email: string;
@@ -21,7 +21,7 @@ async function handleUserResponse(data: AuthResponse) {
 
 async function userFn() {
   const { user } = await getUserProfile();
-  return user ?? null;
+  return user;
 }
 
 async function loginFn(data: LoginCredentials) {
@@ -42,7 +42,7 @@ async function logoutFn() {
 
 export const { useUser, useLogin, useRegister, useLogout, AuthLoader } = configureAuth<
   User,
-  unknown,
+  (Error & Partial<FetchError>) | null,
   LoginCredentials,
   RegisterCredentials
 >({

@@ -3,11 +3,14 @@ declare module 'react-query-auth' {
 }
 
 interface ReactQueryAuthConfig<User, LoginCredentials, RegisterCredentials> {
-  userFn: QueryFunction<User, QueryKey>;
-  loginFn: MutationFunction<User, LoginCredentials>;
-  registerFn: MutationFunction<User, RegisterCredentials>;
-  logoutFn: MutationFunction<unknown, unknown>;
-  userKey?: QueryKey;
+  userFn: import('@tanstack/react-query').QueryFunction<
+    User,
+    import('@tanstack/react-query').QueryKey
+  >;
+  loginFn: import('@tanstack/react-query').MutationFunction<User, LoginCredentials>;
+  registerFn: import('@tanstack/react-query').MutationFunction<User, RegisterCredentials>;
+  logoutFn: import('@tanstack/react-query').MutationFunction<unknown, unknown>;
+  userKey?: import('@tanstack/react-query').QueryKey;
 }
 interface AuthProviderProps {
   children: React.ReactNode;

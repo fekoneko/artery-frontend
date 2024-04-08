@@ -1,26 +1,49 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
-import LoginPage from './pages/LoginPage';
-import RegistrationPage from './pages/RegistrationPage';
-import NotFoundPage from './pages/NotFoundPage';
-
-const queryClient = new QueryClient();
+import { useUser } from './lib/auth';
+import { useEffect } from 'react';
+import LoginPage from './pages/auth/LoginPage';
+import RegistrationPage from './pages/auth/RegistrationPage';
+import NotFoundPage from './pages/main/NotFoundPage';
+import FeedPage from './pages/main/FeedPage';
+import LoadingPage from './pages/LoadingPage';
 
 const App = () => {
+  const user = useUser();
+
+  useEffect(() => {
+    if (user.isStale && user.failureCount < 1) user.refetch();
+  }, [user]);
+
   return (
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        <div className="relative h-dvh w-screen overflow-hidden bg-slate-800 text-slate-400">
-          <Routes>
-            <Route index element={<LandingPage />} />
-            <Route path="login" element={<LoginPage />} />
-            <Route path="register" element={<RegistrationPage />} />
+    <div className="relative h-dvh w-screen overflow-hidden bg-slate-800 text-slate-400">
+      <Routes>
+        <Route index element={<LandingPage />} />
+
+        {user.isLoading && <Route path="*" element={<LoadingPage />} />}
+
+        {user.isError &&
+          (user.error?.response?.status === 401 ? (
+            // Unauthorized
+            <Route>
+              <Route path="login" element={<LoginPage />} />
+              <Route path="register" element={<RegistrationPage />} />
+              <Route path="*" element={<Navigate to="login" />} />
+            </Route>
+          ) : (
+            // Other status code or network error
+            <Route path="*" element={<Navigate to="" />} />
+          ))}
+
+        {user.isSuccess && (
+          <Route>
+            <Route index element={<Navigate to="feed" />} />
+            <Route path="feed" element={<FeedPage />} />
             <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </div>
-      </QueryClientProvider>
-    </BrowserRouter>
+          </Route>
+        )}
+      </Routes>
+    </div>
   );
 };
 export default App;

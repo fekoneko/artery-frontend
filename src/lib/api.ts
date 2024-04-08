@@ -1,5 +1,14 @@
 import { LoginCredentials, RegisterCredentials } from './auth';
 
+export class FetchError extends Error {
+  constructor(
+    public response: Response,
+    message?: string,
+  ) {
+    super(message);
+  }
+}
+
 export interface AuthResponse {
   user: User;
   jwt: string;
@@ -11,34 +20,32 @@ export interface User {
   name?: string;
 }
 
-export async function handleApiResponse(response: Response) {
+export const handleApiResponse = async (response: Response) => {
   const data = await response.json();
 
-  if (response.ok) {
-    return data;
-  } else {
-    console.error(JSON.stringify(data, null, 2));
-    return Promise.reject(data);
-  }
-}
+  if (response.ok) return data;
+  else
+    throw new FetchError(response, `The request is rejected with status code ${response.status}`);
+};
 
-export function getUserProfile(): Promise<{ user: User | undefined }> {
+export const getUserProfile = async (): Promise<{ user: User }> => {
   const jwt = JSON.parse(window.localStorage.getItem('token') || 'null');
+
   return fetch(import.meta.env.VITE_API_URL + '/auth/me', {
     headers: {
       Authorization: jwt,
     },
   }).then(handleApiResponse);
-}
+};
 
-export function login(data: LoginCredentials): Promise<AuthResponse> {
+export const login = (data: LoginCredentials): Promise<AuthResponse> => {
   return fetch(import.meta.env.VITE_API_URL + '/auth/login', {
     method: 'POST',
     body: JSON.stringify(data),
   }).then(handleApiResponse);
-}
+};
 
-export function register(data: RegisterCredentials): Promise<AuthResponse> {
+export const register = (data: RegisterCredentials): Promise<AuthResponse> => {
   return fetch(
     import.meta.env.VITE_API_URL + '/auth/register/' + (data.isCompany ? 'company' : 'user'),
     {
@@ -46,10 +53,10 @@ export function register(data: RegisterCredentials): Promise<AuthResponse> {
       body: JSON.stringify(data),
     },
   ).then(handleApiResponse);
-}
+};
 
-export function logout(): Promise<{ message: string }> {
+export const logout = (): Promise<{ message: string }> => {
   return fetch(import.meta.env.VITE_API_URL + '/auth/logout', { method: 'POST' }).then(
     handleApiResponse,
   );
-}
+};
