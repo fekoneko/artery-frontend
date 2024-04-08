@@ -1,4 +1,5 @@
 import { LoginCredentials, RegisterCredentials } from './auth';
+import { User } from './mockApi';
 
 export class FetchError extends Error {
   constructor(
@@ -12,12 +13,6 @@ export class FetchError extends Error {
 export interface AuthResponse {
   user: User;
   jwt: string;
-}
-
-export interface User {
-  id: string;
-  email: string;
-  name?: string;
 }
 
 export const handleApiResponse = async (response: Response) => {

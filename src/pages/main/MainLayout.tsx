@@ -6,7 +6,7 @@ const MainLayout = () => {
   return (
     <div className="flex size-full flex-col">
       <Header />
-      <div className="grow">
+      <div className="grow overflow-hidden">
         <Outlet />
       </div>
       <Navigation />
