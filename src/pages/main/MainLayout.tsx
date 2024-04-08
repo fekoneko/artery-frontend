@@ -1,14 +1,16 @@
-import { PropsWithChildren } from 'react';
 import Header from '../../components/layout/Header';
 import Navigation from '../../components/layout/Navigation';
+import { Outlet } from 'react-router-dom';
 
-const MainLayout = ({ children }: PropsWithChildren) => {
+const MainLayout = () => {
   return (
-    <>
+    <div className="flex flex-col">
       <Header />
-      {children}
+      <div className="grow">
+        <Outlet />
+      </div>
       <Navigation />
-    </>
+    </div>
   );
 };
 export default MainLayout;

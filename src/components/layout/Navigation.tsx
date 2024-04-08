@@ -1,4 +1,8 @@
 const Navigation = () => {
-  return <nav role="navigation">Navigation</nav>;
+  return (
+    <nav className="flex " role="navigation">
+      Navigation
+    </nav>
+  );
 };
 export default Navigation;
