@@ -1,6 +1,6 @@
 import { animated, useScroll } from 'react-spring';
 import LandingActionButton from '../components/LandingPage/LandingActionButton';
-import LandingSeparationLine from '../components/LandingPage/LandingSeparationLine';
+import SeparationLine from '../components/common/SeparationLine';
 import LandingTitle from '../components/LandingPage/LandingTitle';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -35,7 +35,7 @@ const LandingPage = () => {
           <LandingActionButton onClick={() => navigate('/feed')}>Поехали</LandingActionButton>
         </animated.div>
       </header>
-      <LandingSeparationLine />
+      <SeparationLine />
 
       <div className="snap-center">
         {[0, 0, 0, 0, 0].map((_, index) => (
