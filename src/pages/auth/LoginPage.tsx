@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import LoginForm from '../../components/Forms/UserLoginForm';
-import LeaveFormButton from '../../components/Forms/LeaveFormButton';
+import LoginForm from '../../components/forms/UserLoginForm';
+import LeaveFormButton from '../../components/forms/LeaveFormButton';
 
 const LoginPage = () => {
   return (

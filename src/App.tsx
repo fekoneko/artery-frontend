@@ -7,6 +7,7 @@ import RegistrationPage from './pages/auth/RegistrationPage';
 import NotFoundPage from './pages/main/NotFoundPage';
 import FeedPage from './pages/main/FeedPage';
 import LoadingPage from './pages/LoadingPage';
+import MainLayout from './pages/main/MainLayout';
 
 const App = () => {
   const user = useUser();
@@ -36,7 +37,7 @@ const App = () => {
           ))}
 
         {user.isSuccess && (
-          <Route>
+          <Route element={<MainLayout />}>
             <Route index element={<Navigate to="feed" />} />
             <Route path="feed" element={<FeedPage />} />
             <Route path="*" element={<NotFoundPage />} />
