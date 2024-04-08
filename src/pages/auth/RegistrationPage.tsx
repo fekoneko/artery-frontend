@@ -5,7 +5,7 @@ import CompanyRegistrationForm from '../../components/forms/CompanyRegistrationF
 import LeaveFormButton from '../../components/forms/LeaveFormButton';
 
 const RegistrationPage = () => {
-  const [registrationMode, setRegistrationMode] = useState<'user' | 'company'>('user');
+  const [registrationMode, setRegistrationMode] = useState<'client' | 'company'>('client');
 
   return (
     <main className="flex size-full items-center justify-center">
@@ -15,9 +15,9 @@ const RegistrationPage = () => {
         <h1 className="text-center text-2xl font-bold text-white">Регистрация</h1>
         <div className="grid grid-cols-2 gap-2">
           <button
-            onClick={() => setRegistrationMode('user')}
+            onClick={() => setRegistrationMode('client')}
             className={
-              registrationMode === 'user' ? 'bg-slate-400 font-semibold text-slate-800' : ''
+              registrationMode === 'client' ? 'bg-slate-400 font-semibold text-slate-800' : ''
             }
           >
             Я – клиент
@@ -32,7 +32,7 @@ const RegistrationPage = () => {
           </button>
         </div>
 
-        {registrationMode === 'user' ? <UserRegistrationForm /> : <CompanyRegistrationForm />}
+        {registrationMode === 'client' ? <UserRegistrationForm /> : <CompanyRegistrationForm />}
         <p className="rounded-lg text-center">
           Уже зарегистрированы? <Link to="/login">Войдите</Link>
         </p>

@@ -14,32 +14,32 @@ export type RegisterCredentials = {
   isCompany: boolean;
 };
 
-async function handleUserResponse(data: AuthResponse) {
+const handleUserResponse = async (data: AuthResponse) => {
   const { jwt, user } = data;
   window.localStorage.setItem('accessToken', JSON.stringify(jwt));
   return user;
-}
+};
 
-async function userFn() {
+const userFn = async () => {
   const { user } = await getUserProfile();
   return user;
-}
+};
 
-async function loginFn(data: LoginCredentials) {
+const loginFn = async (data: LoginCredentials) => {
   const response = await login(data);
   const user = await handleUserResponse(response);
   return user;
-}
+};
 
-async function registerFn(data: RegisterCredentials) {
+const registerFn = async (data: RegisterCredentials) => {
   const response = await register(data);
   const user = await handleUserResponse(response);
   return user;
-}
+};
 
-async function logoutFn() {
+const logoutFn = async () => {
   await logout();
-}
+};
 
 export const { useUser, useLogin, useRegister, useLogout, AuthLoader } = configureAuth<
   User,
