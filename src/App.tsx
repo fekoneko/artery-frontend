@@ -19,7 +19,7 @@ const App = () => {
   return (
     <div className="relative h-dvh w-screen overflow-hidden bg-slate-800 text-slate-400">
       <Routes>
-        <Route index element={<LandingPage />} />
+        {!user.isSuccess && <Route index element={<LandingPage />} />}
 
         {user.isLoading && <Route path="*" element={<LoadingPage />} />}
 
