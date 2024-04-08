@@ -14,7 +14,7 @@ const GoodItem = ({children}: PropsWithChildren) => {
                 <h4 className="mb-2 text-orange-400 text-xl font-medium leading-tight">{children[1]}</h4>
                 <p className="mb-4 text-base">{children[2]}</p>
                 <h5 className="text-red-400">{children[3]} RUB</h5>
-                <button className="inline-block rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase text-white transition duration-150 ease-in-out hover:bg-red-300 " onClick={() =>navigate(`feed/${children[0]}`)}>View</button>
+                <button className="inline-block rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase text-white transition duration-150 ease-in-out hover:bg-red-300 " onClick={() =>navigate(`/feed/${children[0]}`)}>View</button>
             </div>
         </div>
     </>

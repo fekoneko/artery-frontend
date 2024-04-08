@@ -8,6 +8,7 @@ import NotFoundPage from './pages/main/NotFoundPage';
 import FeedPage from './pages/main/FeedPage';
 import LoadingPage from './pages/LoadingPage';
 import MainLayout from './pages/main/MainLayout';
+import GoodPage from './components/Goods/GoodPage';
 
 const App = () => {
   const user = useUser();
@@ -40,6 +41,7 @@ const App = () => {
           <Route element={<MainLayout />}>
             <Route index element={<Navigate to="feed" />} />
             <Route path="feed" element={<FeedPage />} />
+            <Route path="feed/:id" element={<GoodPage />}/>
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         )}
