@@ -28,7 +28,7 @@ const App = () => {
             <Route>
               <Route path="login" element={<LoginPage />} />
               <Route path="register" element={<RegistrationPage />} />
-              <Route path="*" element={<Navigate to="login" />} />
+              <Route path="*" element={<Navigate to="register" />} />
             </Route>
           ) : (
             // Other status code or network error

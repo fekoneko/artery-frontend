@@ -1,5 +1,6 @@
 import { configureAuth } from 'react-query-auth';
-import { getUserProfile, register, login, AuthResponse, logout, User, FetchError } from './api';
+import { getUserProfile, register, login, AuthResponse, logout, User, FetchError } from './mockApi';
+// TODO change back!!!
 
 export type LoginCredentials = {
   email: string;

@@ -32,7 +32,7 @@ const LandingPage = () => {
           <h2 className="bg-gradient-green mb-8 bg-clip-text text-center text-3xl font-bold">
             Твой товар – твои правила
           </h2>
-          <LandingActionButton onClick={() => navigate('/register')}>Поехали</LandingActionButton>
+          <LandingActionButton onClick={() => navigate('/feed')}>Поехали</LandingActionButton>
         </animated.div>
       </header>
       <LandingSeparationLine />

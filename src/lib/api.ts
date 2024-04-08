@@ -33,7 +33,7 @@ export const getUserProfile = async (): Promise<{ user: User }> => {
 
   return fetch(import.meta.env.VITE_API_URL + '/auth/me', {
     headers: {
-      Authorization: jwt,
+      Authorization: `Bearer ${jwt}`,
     },
   }).then(handleApiResponse);
 };
