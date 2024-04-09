@@ -11,6 +11,7 @@ import MainLayout from './pages/main/MainLayout';
 import CartPage from './pages/main/CartPage';
 import ProfilePage from './pages/main/ProfilePage';
 import GoodPage from './pages/main/GoodPage';
+import PickPointsPage from './pages/main/PickPointsPage';
 
 const App = () => {
   const user = useUser();
@@ -46,6 +47,7 @@ const App = () => {
             <Route path="good/:id" element={<GoodPage />} />
             <Route path="cart" element={<CartPage />} />
             <Route path="profile" element={<ProfilePage />} />
+            <Route path="pickpoints" element={<PickPointsPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         )}
