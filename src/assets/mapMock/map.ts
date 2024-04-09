@@ -1,6 +1,6 @@
-import { MapLandscape, MapPoint, MapRoad } from '../../@types/global';
+import { MapTerrain, MapPoint, MapRoad } from '../../@types/global';
 
-export const mapLandscape: MapLandscape = {
+export const mapTerrain: MapTerrain = {
   width: 200,
   height: 100,
   areas: [

@@ -1,24 +1,24 @@
-import { MapLandscape, MapPoint, MapRoad } from '../../@types/global';
-import MapLandscapeAreaView from './MapLandscapeAreaView';
+import { MapTerrain, MapPoint, MapRoad } from '../../@types/global';
+import MapTerrainAreaView from './MapTerrainAreaView';
 import MapPathView from './MapPathView';
 import MapPointView from './MapPointView';
 import MapRoadView from './MapRoadView';
 
 interface MapViewProps {
-  landscape: MapLandscape;
+  terrain: MapTerrain;
   points: MapPoint[];
   roads: MapRoad[];
   path: number[];
 }
-const MapView = ({ landscape, points, roads, path }: MapViewProps) => {
+const MapView = ({ terrain, points, roads, path }: MapViewProps) => {
   return (
     <svg
-      viewBox={`0 0 ${landscape.width} ${landscape.height}`}
+      viewBox={`0 0 ${terrain.width} ${terrain.height}`}
       className="size-full"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {landscape.areas.map((area, index) => (
-        <MapLandscapeAreaView key={index} area={area} />
+      {terrain.areas.map((area, index) => (
+        <MapTerrainAreaView key={index} area={area} />
       ))}
 
       {roads.map((road) => (

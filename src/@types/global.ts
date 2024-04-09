@@ -17,15 +17,15 @@ export interface GoodCategory {
   name: string;
 }
 
-export interface MapLandscapeArea {
+export interface MapTerrainArea {
   points: { x: number; y: number }[];
   color: string;
 }
 
-export interface MapLandscape {
+export interface MapTerrain {
   width: number;
   height: number;
-  areas: MapLandscapeArea[];
+  areas: MapTerrainArea[];
 }
 
 export interface MapPoint {
