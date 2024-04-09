@@ -21,8 +21,8 @@ const MapView = ({ landscape, points, roads, path }: MapViewProps) => {
         <MapLandscapeAreaView key={index} area={area} />
       ))}
 
-      {roads.map((road, index) => (
-        <MapRoadView key={index} road={road} points={points} />
+      {roads.map((road) => (
+        <MapRoadView key={road.id} road={road} points={points} />
       ))}
 
       <MapPathView path={path} points={points} />
