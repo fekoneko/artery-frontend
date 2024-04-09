@@ -1729,6 +1729,13 @@ react-hook-form@^7.51.2:
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.51.2.tgz#79f7f72ee217c5114ff831012d1a7ec344096e7f"
   integrity sha512-y++lwaWjtzDt/XNnyGDQy6goHskFualmDlf+jzEZvjvz6KWDf7EboL7pUvRCzPTJd0EOPpdekYaQLEvvG6m6HA==
 
+react-parallax-mouse@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-parallax-mouse/-/react-parallax-mouse-2.1.0.tgz#20e53c2a1378a13ce3e5e8d98705350713939166"
+  integrity sha512-+tbogVsLtTuCvq6rgmGsxW5IXzn3/2e1m71eOwqbayJD/SvqwNEBtw08L20FG1EPc0ka5wapyH9U7MyfnfNVZA==
+  dependencies:
+    react-spring "^9.7.3"
+
 react-query-auth@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/react-query-auth/-/react-query-auth-2.3.0.tgz#2c03e4cd3c75a01bde0cfa97168b857906315449"

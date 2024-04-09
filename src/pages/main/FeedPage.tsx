@@ -3,7 +3,7 @@ import GoodCategorySelector from '../../components/Goods/GoodsCategorySelector';
 
 const FeedPage = () => {
   return (
-    <main className="flex size-full gap-4 overflow-hidden pl-[12vw]">
+    <main className="grid size-full grid-cols-[1fr_5fr] gap-4 pl-[12vw]">
       <GoodCategorySelector />
       <GoodsList />
     </main>

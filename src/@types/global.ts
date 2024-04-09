@@ -11,3 +11,8 @@ export interface Good {
   price: number;
   imageUrl: string;
 }
+
+export interface GoodCategory {
+  id: number;
+  name: string;
+}
