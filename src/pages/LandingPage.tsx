@@ -1,5 +1,5 @@
 import { animated, useScroll } from 'react-spring';
-import LandingActionButton from '../components/LandingPage/LandingActionButton';
+import ActionButton from '../components/common/ActionButton';
 import SeparationLine from '../components/common/SeparationLine';
 import LandingTitle from '../components/LandingPage/LandingTitle';
 import { useRef } from 'react';
@@ -32,7 +32,7 @@ const LandingPage = () => {
           <h2 className="bg-gradient-green mb-8 bg-clip-text text-center text-3xl font-bold">
             Твой товар – твои правила
           </h2>
-          <LandingActionButton onClick={() => navigate('/feed')}>Поехали</LandingActionButton>
+          <ActionButton onClick={() => navigate('/feed')}>Поехали</ActionButton>
         </animated.div>
       </header>
       <SeparationLine />

@@ -29,6 +29,8 @@ const Navigation = () => {
       <SeparationLine />
       <nav role="navigation" className="px-[12%] py-2">
         <div className="relative size-full">
+          <div className="absolute left-0 top-[calc(-3rem-2px)] z-50 h-10 w-full bg-gradient-to-t from-slate-800/60" />
+
           <ul
             style={{ gridTemplateColumns: `repeat(${tabs.length}, 1fr)` }}
             className="grid size-full grid-flow-col gap-2"
