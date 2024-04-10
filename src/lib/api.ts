@@ -1,55 +1,44 @@
+import { AxiosResponse } from 'axios';
 import { LoginCredentials, RegisterCredentials } from './auth';
-import { User } from './mockApi';
+import axiosInstance from './axios';
+import { Client, Company } from '../@types/global';
 
 export class FetchError extends Error {
   constructor(
-    public response: Response,
+    public response: AxiosResponse,
     message?: string,
   ) {
     super(message);
   }
 }
 
-export interface AuthResponse {
-  user: User;
+export interface AuthResponse<Who extends Client | Company> {
+  user: Who;
   jwt: string;
 }
 
-export const handleApiResponse = async (response: Response) => {
-  const data = await response.json();
-
-  if (response.ok) {
-    if (data?.jwt) localStorage.setItem('accessToken', data.jwt);
-    return data;
-  } else
+export const handleApiResponse = async (response: AxiosResponse) => {
+  if (response.status >= 400)
     throw new FetchError(response, `The request is rejected with status code ${response.status}`);
+
+  if (response.data?.jwt) localStorage.setItem('accessToken', response.data.jwt);
+  return response.data;
 };
 
-export const getUserProfile = async (): Promise<{ user: User }> => {
-  const jwt = JSON.parse(window.localStorage.getItem('accessToken') || 'null');
-
-  return fetch(import.meta.env.VITE_API_URL + '/api/me', {
-    headers: {
-      Authorization: `Bearer ${jwt}`,
-    },
-  }).then(handleApiResponse);
+export const getUserProfile = async (): Promise<{ user: Client | Company }> => {
+  return axiosInstance.get('/api/me').then(handleApiResponse);
 };
 
-export const login = (data: LoginCredentials): Promise<AuthResponse> => {
-  return fetch(import.meta.env.VITE_API_URL + '/api/login', {
-    method: 'POST',
-    body: JSON.stringify(data),
-  }).then(handleApiResponse);
+export const login = <Who extends Client | Company>(
+  data: LoginCredentials,
+): Promise<AuthResponse<Who>> => {
+  return axiosInstance.post('/api/login/' + data.who, data).then(handleApiResponse);
 };
 
-export const register = (data: RegisterCredentials): Promise<AuthResponse> => {
-  return fetch(
-    import.meta.env.VITE_API_URL + '/api/register/' + (data.isCompany ? 'company' : 'client'),
-    {
-      method: 'POST',
-      body: JSON.stringify(data),
-    },
-  ).then(handleApiResponse);
+export const register = <Who extends Client | Company>(
+  data: RegisterCredentials,
+): Promise<AuthResponse<Who>> => {
+  return axiosInstance.post('/api/register/' + data.who, data).then(handleApiResponse);
 };
 
 export const logout = (): void => {

@@ -1,11 +1,17 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import UserRegistrationForm from '../../components/Forms/UserRegistrationForm';
+import ClientRegistrationForm from '../../components/Forms/ClientRegistrationForm';
 import CompanyRegistrationForm from '../../components/Forms/CompanyRegistrationForm';
 import LeaveFormButton from '../../components/Forms/LeaveFormButton';
+import ChoiceButtons, { Choice } from '../../components/Forms/ChoiceButtons';
+
+const whoChoices: Choice<'client' | 'company'>[] = [
+  { label: 'Я – клиент', value: 'client' },
+  { label: 'Я – огранизация', value: 'company' },
+];
 
 const RegistrationPage = () => {
-  const [registrationMode, setRegistrationMode] = useState<'client' | 'company'>('client');
+  const [who, setWho] = useState<'client' | 'company'>('client');
 
   return (
     <main className="flex size-full items-center justify-center">
@@ -13,26 +19,8 @@ const RegistrationPage = () => {
 
       <div className="flex min-w-[50%] max-w-[80%] flex-col gap-4 rounded-lg border-2 border-slate-200 p-4 shadow-xl">
         <h1 className="text-center text-2xl font-bold text-white">Регистрация</h1>
-        <div className="grid grid-cols-2 gap-2">
-          <button
-            onClick={() => setRegistrationMode('client')}
-            className={
-              registrationMode === 'client' ? 'bg-slate-400 font-semibold text-slate-800' : ''
-            }
-          >
-            Я – клиент
-          </button>
-          <button
-            onClick={() => setRegistrationMode('company')}
-            className={
-              registrationMode === 'company' ? 'bg-slate-400 font-semibold text-slate-800' : ''
-            }
-          >
-            Я – огранизация
-          </button>
-        </div>
-
-        {registrationMode === 'client' ? <UserRegistrationForm /> : <CompanyRegistrationForm />}
+        <ChoiceButtons state={who} setState={setWho} choices={whoChoices} />
+        {who === 'client' ? <ClientRegistrationForm /> : <CompanyRegistrationForm />}
         <p className="rounded-lg text-center">
           Уже зарегистрированы? <Link to="/login">Войдите</Link>
         </p>

@@ -44,7 +44,7 @@ const CompanyRegistrationForm = () => {
         email: formData.email,
         name: formData.name,
         password: formData.password,
-        isCompany: true,
+        who: 'company',
       });
     },
     [register],

@@ -1,7 +1,23 @@
-export interface User {
-  id: string;
+export interface Client {
+  who: 'client';
+  surname: string;
+  name: string;
+  patronymic?: string;
+  phone: number;
   email: string;
-  name?: string;
+  password: string;
+  image?: string;
+  city: number;
+}
+
+export interface Company {
+  who: 'company';
+  image?: string;
+  name: string;
+  email: string;
+  password: string;
+  phone: number;
+  description?: string;
 }
 
 export interface Good {
@@ -36,10 +52,14 @@ export interface MapPoint {
   isStorage?: boolean;
 }
 
+export type TransportType = 'car' | 'railway' | 'air' | 'sea' | 'river';
+
 export interface MapRoad {
   id: number;
   startId: number;
   endId: number;
+  time: number;
   cost: number;
   distance: number;
+  transportType: TransportType;
 }

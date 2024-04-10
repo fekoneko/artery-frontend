@@ -35,7 +35,7 @@ const formFieldData: FormFieldInfo<FormFields>[] = [
   },
 ];
 
-const UserRegistrationForm = () => {
+const ClientRegistrationForm = () => {
   const register = useRegister();
 
   const onSubmit = useCallback<SubmitHandler<FormFields>>(
@@ -44,7 +44,7 @@ const UserRegistrationForm = () => {
         email: formData.email,
         name: formData.name,
         password: formData.password,
-        isCompany: false,
+        who: 'client',
       });
     },
     [register],
@@ -54,4 +54,4 @@ const UserRegistrationForm = () => {
     <Form formFieldData={formFieldData} submitTitle="Зарегистрироваться" onSubmit={onSubmit} />
   );
 };
-export default UserRegistrationForm;
+export default ClientRegistrationForm;

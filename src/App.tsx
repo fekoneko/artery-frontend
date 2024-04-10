@@ -1,7 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import { useUser } from './lib/auth';
-import { useEffect } from 'react';
 import LoginPage from './pages/auth/LoginPage';
 import RegistrationPage from './pages/auth/RegistrationPage';
 import NotFoundPage from './pages/main/NotFoundPage';
@@ -14,31 +13,26 @@ import GoodPage from './pages/main/GoodPage';
 import PickPointsPage from './pages/main/PickPointsPage';
 
 const App = () => {
-  const user = useUser();
-
-  useEffect(() => {
-    if (user.isStale && user.failureCount < 1) user.refetch();
-  }, [user]);
+  const user = useUser({ retry: false });
 
   return (
     <div className="relative h-dvh w-screen overflow-hidden bg-slate-800 text-slate-400">
       <Routes>
-        {!user.isSuccess && <Route index element={<LandingPage />} />}
+        {user.isLoading && (
+          <Route>
+            <Route index element={<LandingPage />} />
+            <Route path="*" element={<LoadingPage />} />
+          </Route>
+        )}
 
-        {user.isLoading && <Route path="*" element={<LoadingPage />} />}
-
-        {user.isError &&
-          (user.error?.response?.status === 401 ? (
-            // Unauthorized
-            <Route>
-              <Route path="login" element={<LoginPage />} />
-              <Route path="register" element={<RegistrationPage />} />
-              <Route path="*" element={<Navigate to="register" />} />
-            </Route>
-          ) : (
-            // Other status code or network error
-            <Route path="*" element={<Navigate to="" />} />
-          ))}
+        {user.isError && (
+          <Route>
+            <Route index element={<LandingPage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="register" element={<RegistrationPage />} />
+            <Route path="*" element={<Navigate to="login" />} />
+          </Route>
+        )}
 
         {user.isSuccess && (
           <Route element={<MainLayout />}>

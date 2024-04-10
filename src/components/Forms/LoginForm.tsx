@@ -27,14 +27,17 @@ const formFieldData: FormFieldInfo<FormFields>[] = [
   },
 ];
 
-const LoginForm = () => {
+interface LoginFormProps {
+  who: 'client' | 'company';
+}
+const LoginForm = ({ who }: LoginFormProps) => {
   const login = useLogin();
 
   const onSubmit = useCallback<SubmitHandler<FormFields>>(
     (formData) => {
-      login.mutate({ email: formData.email, password: formData.password });
+      login.mutate({ email: formData.email, password: formData.password, who });
     },
-    [login],
+    [login, who],
   );
 
   return <Form formFieldData={formFieldData} submitTitle="Войти" onSubmit={onSubmit} />;
