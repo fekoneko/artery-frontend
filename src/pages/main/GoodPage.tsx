@@ -6,9 +6,11 @@ import { MouseParallaxChild, MouseParallaxContainer } from 'react-parallax-mouse
 const GoodPage = () => {
   const params = useParams<{ id: string }>();
   const good = params.id ? goods[+params.id - 1] : undefined;
-  const onClick = () => {
+
+  const addToCard = () => {
     localStorage.setItem(`id ${good?.id}`, `${good?.id}`);
   };
+
   return (
     <main className="flex size-full overflow-y-scroll pl-[12%] pr-[calc(12%-0.5rem)]">
       <div className="flex-col gap-2 pt-4">
@@ -33,14 +35,13 @@ const GoodPage = () => {
                 <div className="absolute size-full bg-slate-600/30" />
               </div>
             </MouseParallaxContainer>
-            <ActionButton>В корзину</ActionButton>
+            <ActionButton onClick={addToCard}>В корзину</ActionButton>
           </div>
 
           <div className="flex flex-col gap-1">
             <h1 className="text-[2.4rem] font-bold text-slate-300">{good?.name}</h1>
             <p>{good?.price} RUB</p>
             <p>{good?.description}</p>
-            <ActionButton onClick={() => onClick()}>В корзину</ActionButton>
           </div>
         </div>
       </div>
