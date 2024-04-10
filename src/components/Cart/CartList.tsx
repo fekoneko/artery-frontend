@@ -1,36 +1,47 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+import CartItemView from './CartItemView';
+import CartContext from '../../contexts/CartContext';
 import { products } from '../../assets/productsMock/products';
-import CartItem from './CartItem';
 
 const CartList = () => {
-  const [cartItems, setCartItems] = useState(() => {
-    const items = [];
-    for (let i = 0; i < localStorage.length; i++) {
-      const itemKey = localStorage.key(i);
-      const itemValue = localStorage.getItem(`${itemKey}`);
-      const foundItem = products.find((product) => `${product.id}` == itemValue);
-      if (foundItem) {
-        items.push(foundItem);
-      }
-    }
-    return items;
-  });
+  const { cart, setCart } = useContext(CartContext);
 
   const removeFromCart = (id: number) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
+    setCart((prev) => prev?.filter((item) => item.id !== id));
   };
+
+  const setQuantity = (id: number, newQuantity: number) =>
+    setCart((prev) =>
+      prev?.map((item) => {
+        if (item.id === id) return { id, quantity: newQuantity };
+        else return item;
+      }),
+    );
 
   return (
     <div>
-      {cartItems.length == 0 && <div>Корзина пуста</div>}
-      {cartItems.map((item) => (
-        <CartItem item={item} key={item.id} onRemove={removeFromCart} />
-      ))}
+      {cart?.length ? (
+        <>
+          {cart.map((item) => {
+            const product = products.find((product) => product.id === item.id);
+            if (!product) return null;
 
-      {cartItems[0] && (
-        <button className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">
-          Checkout
-        </button>
+            return (
+              <CartItemView
+                key={item.id}
+                product={product}
+                quantity={item.quantity}
+                setQuantity={(newQuantity) => setQuantity(item.id, newQuantity)}
+                onRemove={() => removeFromCart(item.id)}
+              />
+            );
+          })}
+          <button className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">
+            Checkout
+          </button>
+        </>
+      ) : (
+        <h2>Корзина пуста</h2>
       )}
     </div>
   );

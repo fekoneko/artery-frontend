@@ -11,6 +11,7 @@ import CartPage from './pages/main/CartPage';
 import ProfilePage from './pages/main/ProfilePage';
 import ProductPage from './pages/main/ProductPage';
 import PickPointsPage from './pages/main/PickPointsPage';
+import { CartProvider } from './contexts/CartContext';
 
 const App = () => {
   const user = useUser({ retry: false });
@@ -35,17 +36,26 @@ const App = () => {
         )}
 
         {user.isSuccess && (
-          <Route element={<MainLayout />}>
-            <Route index element={<Navigate to="/feed" />} />
-            <Route path="/login" element={<Navigate to="/feed" />} />
-            <Route path="/register" element={<Navigate to="/feed" />} />
-            <Route path="/feed" element={<FeedPage />} />
-            <Route path="/product/:id" element={<ProductPage />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/pickpoints" element={<PickPointsPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Route>
+          <Route
+            path="*"
+            element={
+              <CartProvider>
+                <Routes>
+                  <Route element={<MainLayout />}>
+                    <Route index element={<Navigate to="/feed" />} />
+                    <Route path="/login" element={<Navigate to="/feed" />} />
+                    <Route path="/register" element={<Navigate to="/feed" />} />
+                    <Route path="/feed" element={<FeedPage />} />
+                    <Route path="/product/:id" element={<ProductPage />} />
+                    <Route path="/cart" element={<CartPage />} />
+                    <Route path="/profile" element={<ProfilePage />} />
+                    <Route path="/pickpoints" element={<PickPointsPage />} />
+                    <Route path="*" element={<NotFoundPage />} />
+                  </Route>
+                </Routes>
+              </CartProvider>
+            }
+          />
         )}
       </Routes>
     </div>

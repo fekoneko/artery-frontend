@@ -7,7 +7,7 @@ export const products: Product[] = [
     description:
       'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam explicabo deleniti suscipit dolor, ea qui quam et perspiciatis sapiente. Soluta provident ipsa libero harum consectetur labore itaque expedita rerum magni. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam explicabo deleniti suscipit dolor, ea qui quam et perspiciatis sapiente. Soluta provident ipsa libero harum consectetur labore itaque expedita rerum magni. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam explicabo deleniti suscipit dolor, ea qui quam et perspiciatis sapiente. Soluta provident ipsa libero harum consectetur labore itaque expedita rerum magni. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam explicabo deleniti suscipit dolor, ea qui quam et perspiciatis sapiente. Soluta provident ipsa libero harum consectetur labore itaque expedita rerum magni. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam explicabo deleniti suscipit dolor, ea qui quam et perspiciatis sapiente. Soluta provident ipsa libero harum consectetur labore itaque expedita rerum magni. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam explicabo deleniti suscipit dolor, ea qui quam et perspiciatis sapiente. Soluta provident ipsa libero harum consectetur labore itaque expedita rerum magni.',
     price: 2500,
-    imageUrl:
+    image:
       'https://w7.pngwing.com/pngs/552/703/png-transparent-lord-of-the-ring-ring-the-lord-of-the-rings-the-hobbit-sauron-frodo-baggins-one-ring-lord-ring-gold-dwarf.png',
   },
   {
@@ -16,7 +16,7 @@ export const products: Product[] = [
     description:
       'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam explicabo deleniti suscipit dolor, ea qui quam et perspiciatis sapiente. Soluta provident ipsa libero harum consectetur labore itaque expedita rerum magni. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam explicabo deleniti suscipit dolor, ea qui quam et perspiciatis sapiente. Soluta provident ipsa libero harum consectetur labore itaque expedita rerum magni.',
     price: 1235446,
-    imageUrl:
+    image:
       'https://banner2.cleanpng.com/20190130/wav/kisspng-gollum-the-lord-of-the-rings-character-illustratio-elf-gollum-lord-of-the-ring-smeagol-icon-5c51624358bd59.9231641015488374433635.jpg',
   },
   {
@@ -24,7 +24,7 @@ export const products: Product[] = [
     name: 'Gold Ring',
     description: 'Lorem ipsum dolor',
     price: 2500,
-    imageUrl:
+    image:
       'https://w7.pngwing.com/pngs/552/703/png-transparent-lord-of-the-ring-ring-the-lord-of-the-rings-the-hobbit-sauron-frodo-baggins-one-ring-lord-ring-gold-dwarf.png',
   },
   {
@@ -32,7 +32,7 @@ export const products: Product[] = [
     name: 'Golumn',
     description: 'Lorem ipsum dolor sit, amet',
     price: 1235446,
-    imageUrl:
+    image:
       'https://banner2.cleanpng.com/20190130/wav/kisspng-gollum-the-lord-of-the-rings-character-illustratio-elf-gollum-lord-of-the-ring-smeagol-icon-5c51624358bd59.9231641015488374433635.jpg',
   },
   {
@@ -40,7 +40,7 @@ export const products: Product[] = [
     name: 'Gold Ring',
     description: 'Lorem ipsum dolor',
     price: 2500,
-    imageUrl:
+    image:
       'https://w7.pngwing.com/pngs/552/703/png-transparent-lord-of-the-ring-ring-the-lord-of-the-rings-the-hobbit-sauron-frodo-baggins-one-ring-lord-ring-gold-dwarf.png',
   },
   {
@@ -48,7 +48,7 @@ export const products: Product[] = [
     name: 'Golumn',
     description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
     price: 1235446,
-    imageUrl:
+    image:
       'https://banner2.cleanpng.com/20190130/wav/kisspng-gollum-the-lord-of-the-rings-character-illustratio-elf-gollum-lord-of-the-ring-smeagol-icon-5c51624358bd59.9231641015488374433635.jpg',
   },
 ];

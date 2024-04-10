@@ -8,8 +8,8 @@ const ProductsList = ({ product }: ProductsListProps) => {
   return (
     <div className="overflow-y-scroll pr-[calc(12vw-0.5rem)]">
       <div className="grid grid-cols-3 gap-4 py-4">
-        {product.map((good) => (
-          <ProductCard key={good.id} product={good}></ProductCard>
+        {product.map((product) => (
+          <ProductCard key={product.id} product={product}></ProductCard>
         ))}
       </div>
     </div>
