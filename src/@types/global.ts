@@ -20,7 +20,7 @@ export interface Company {
   description?: string;
 }
 
-export interface Good {
+export interface Product {
   id: number;
   name: string;
   description: string;
@@ -28,7 +28,7 @@ export interface Good {
   imageUrl: string;
 }
 
-export interface GoodCategory {
+export interface ProductCategory {
   id: number;
   name: string;
 }

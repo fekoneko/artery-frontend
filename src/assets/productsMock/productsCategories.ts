@@ -1,6 +1,6 @@
-import { GoodCategory } from '../../@types/global';
+import { ProductCategory } from '../../@types/global';
 
-export const categories: GoodCategory[] = [
+export const categories: ProductCategory[] = [
   { id: 1, name: 'Ring' },
   { id: 2, name: 'Sword' },
   { id: 3, name: 'Iron' },

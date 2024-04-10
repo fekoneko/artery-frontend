@@ -1,6 +1,6 @@
-import { Good } from '../../@types/global';
+import { Product } from '../../@types/global';
 
-export const goods: Good[] = [
+export const products: Product[] = [
   {
     id: 1,
     name: 'Gold Ring',

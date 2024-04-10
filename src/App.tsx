@@ -9,7 +9,7 @@ import LoadingPage from './pages/LoadingPage';
 import MainLayout from './pages/main/MainLayout';
 import CartPage from './pages/main/CartPage';
 import ProfilePage from './pages/main/ProfilePage';
-import GoodPage from './pages/main/GoodPage';
+import ProductPage from './pages/main/ProductPage';
 import PickPointsPage from './pages/main/PickPointsPage';
 
 const App = () => {
@@ -40,7 +40,7 @@ const App = () => {
             <Route path="/login" element={<Navigate to="/feed" />} />
             <Route path="/register" element={<Navigate to="/feed" />} />
             <Route path="/feed" element={<FeedPage />} />
-            <Route path="/good/:id" element={<GoodPage />} />
+            <Route path="/product/:id" element={<ProductPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/pickpoints" element={<PickPointsPage />} />

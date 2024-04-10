@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
-import { goods } from '../../assets/goodsMock/goods';
+import { products } from '../../assets/productsMock/products';
 import ActionButton from '../../components/common/ActionButton';
 import { MouseParallaxChild, MouseParallaxContainer } from 'react-parallax-mouse';
 
 const GoodPage = () => {
   const params = useParams<{ id: string }>();
-  const good = params.id ? goods[+params.id - 1] : undefined;
+  const good = params.id ? products[+params.id - 1] : undefined;
 
   const addToCard = () => {
     localStorage.setItem(`id ${good?.id}`, `${good?.id}`);

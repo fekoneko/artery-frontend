@@ -1,8 +1,8 @@
 import { useSearchParams } from 'react-router-dom';
-import { categories } from '../../assets/goodsMock/goodsCategories';
+import { categories } from '../../assets/productsMock/productsCategories';
 import { useEffect, useState } from 'react';
 
-const GoodCategorySelector = () => {
+const ProductCategorySelector = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedCategoryId, setSelectedCategoryId] = useState<number>();
 
@@ -63,4 +63,4 @@ const GoodCategorySelector = () => {
   );
 };
 
-export default GoodCategorySelector;
+export default ProductCategorySelector;
