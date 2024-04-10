@@ -4,7 +4,7 @@ import FormSelect, { GetOptionsFunction } from './FormSelect';
 
 export interface FormFieldInfo<FormFields extends FieldValues> {
   name: Path<FormFields>;
-  type: React.HTMLInputTypeAttribute | 'select';
+  type: React.HTMLInputTypeAttribute | 'select' | 'textarea';
   label: string;
   options?: RegisterOptions<FormFields>;
   getOptions?: GetOptionsFunction;
@@ -40,12 +40,19 @@ const Form = <FormFields extends FieldValues>({
             )}
             :
           </label>
+
           {fieldInfo.type === 'select' ? (
             <FormSelect
               control={control}
               id={`${formId}-${fieldInfo.name}`}
               name={fieldInfo.name}
               getOptions={fieldInfo.getOptions}
+            />
+          ) : fieldInfo.type === 'textarea' ? (
+            <textarea
+              id={`${formId}-${fieldInfo.name}`}
+              className="h-28 resize-none"
+              {...register(fieldInfo.name, fieldInfo.options)}
             />
           ) : (
             <input

@@ -13,7 +13,7 @@ export interface FormFields {
   patronymic?: string;
   city: string;
   phone: string;
-  //image?: string;
+  // image?: string;
 }
 
 const requiredMessage = 'Это обязательное поле';
@@ -21,11 +21,11 @@ const requiredMessage = 'Это обязательное поле';
 const formFieldData: FormFieldInfo<FormFields>[] = [
   {
     name: 'email',
-    type: 'text',
+    type: 'email',
     label: 'Электронная почта',
     options: {
       required: requiredMessage,
-      pattern: { value: emailRegExp, message: 'Enter valid email' },
+      pattern: { value: emailRegExp, message: 'Введён некорректный адрес' },
     },
   },
   {

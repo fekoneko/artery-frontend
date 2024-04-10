@@ -6,32 +6,54 @@ import { SubmitHandler } from 'react-hook-form';
 
 export interface FormFields {
   email: string;
-  name: string;
   password: string;
   confirmation: string;
+  name: string;
+  description?: string;
+  phone: string;
+  // image?: string;
 }
+
+const requiredMessage = 'Это обязательное поле';
 
 const formFieldData: FormFieldInfo<FormFields>[] = [
   {
     name: 'email',
-    type: 'text',
-    label: 'Email',
+    type: 'email',
+    label: 'Электронная почта',
     options: {
-      required: 'Email is required',
-      pattern: { value: emailRegExp, message: 'Enter valid email' },
+      required: requiredMessage,
+      pattern: { value: emailRegExp, message: 'Введён некорректный адрес' },
     },
   },
   {
     name: 'password',
     type: 'password',
-    label: 'Password',
-    options: { required: 'Password is required' },
+    label: 'Пароль',
+    options: { required: requiredMessage },
   },
   {
     name: 'confirmation',
     type: 'password',
-    label: 'Confirm password',
-    options: { required: 'Password confirmation is required' },
+    label: 'Повторите пароль',
+    options: { required: requiredMessage },
+  },
+  {
+    name: 'name',
+    type: 'text',
+    label: 'Название организации',
+    options: { required: requiredMessage },
+  },
+  {
+    name: 'description',
+    type: 'textarea',
+    label: 'Описание',
+  },
+  {
+    name: 'phone',
+    type: 'phone',
+    label: 'Номер телефона',
+    options: { required: requiredMessage },
   },
 ];
 
