@@ -28,20 +28,22 @@ const App = () => {
         {user.isError && (
           <Route>
             <Route index element={<LandingPage />} />
-            <Route path="login" element={<LoginPage />} />
-            <Route path="register" element={<RegistrationPage />} />
-            <Route path="*" element={<Navigate to="login" />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegistrationPage />} />
+            <Route path="*" element={<Navigate to="/login" />} />
           </Route>
         )}
 
         {user.isSuccess && (
           <Route element={<MainLayout />}>
-            <Route index element={<Navigate to="feed" />} />
-            <Route path="feed" element={<FeedPage />} />
-            <Route path="good/:id" element={<GoodPage />} />
-            <Route path="cart" element={<CartPage />} />
-            <Route path="profile" element={<ProfilePage />} />
-            <Route path="pickpoints" element={<PickPointsPage />} />
+            <Route index element={<Navigate to="/feed" />} />
+            <Route path="/login" element={<Navigate to="/feed" />} />
+            <Route path="/register" element={<Navigate to="/feed" />} />
+            <Route path="/feed" element={<FeedPage />} />
+            <Route path="/good/:id" element={<GoodPage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/pickpoints" element={<PickPointsPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         )}
