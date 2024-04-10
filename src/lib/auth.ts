@@ -1,6 +1,8 @@
 import { configureAuth } from 'react-query-auth';
-import { getUserProfile, register, login, AuthResponse, logout, FetchError } from './api';
+import { register, login, AuthResponse, logout, FetchError } from './api';
 import { Client, Company } from '../@types/global';
+
+import { getUserProfile } from './mockApi'; // TODO: FIX API AND REMOVE MOCK
 
 export type LoginCredentials = {
   email: string;
