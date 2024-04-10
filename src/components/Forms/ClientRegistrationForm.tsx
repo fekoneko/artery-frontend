@@ -6,32 +6,71 @@ import { SubmitHandler } from 'react-hook-form';
 
 export interface FormFields {
   email: string;
-  name: string;
   password: string;
   confirmation: string;
+  name: string;
+  surname: string;
+  patronymic?: string;
+  city: string;
+  phone: string;
+  //image?: string;
 }
+
+const requiredMessage = 'Это обязательное поле';
 
 const formFieldData: FormFieldInfo<FormFields>[] = [
   {
     name: 'email',
     type: 'text',
-    label: 'Email',
+    label: 'Электронная почта',
     options: {
-      required: 'Email is required',
+      required: requiredMessage,
       pattern: { value: emailRegExp, message: 'Enter valid email' },
     },
   },
   {
     name: 'password',
     type: 'password',
-    label: 'Password',
-    options: { required: 'Password is required' },
+    label: 'Пароль',
+    options: { required: requiredMessage },
   },
   {
     name: 'confirmation',
     type: 'password',
-    label: 'Confirm password',
-    options: { required: 'Password confirmation is required' },
+    label: 'Повторите пароль',
+    options: { required: requiredMessage },
+  },
+  {
+    name: 'name',
+    type: 'text',
+    label: 'Имя',
+    options: { required: requiredMessage },
+  },
+  {
+    name: 'surname',
+    type: 'text',
+    label: 'Фамилия',
+    options: { required: requiredMessage },
+  },
+  {
+    name: 'patronymic',
+    type: 'text',
+    label: 'Отчество',
+  },
+  {
+    name: 'city',
+    type: 'select',
+    label: 'Ваш город',
+    options: { required: requiredMessage },
+    getOptions: (search) =>
+      new Promise((resolve) => resolve(search ? [{ value: search, label: search }] : [])),
+    // TODO: Put an actual api fetch here
+  },
+  {
+    name: 'phone',
+    type: 'phone',
+    label: 'Номер телефона',
+    options: { required: requiredMessage },
   },
 ];
 
