@@ -2,10 +2,11 @@ import { useContext } from 'react';
 import CartItemView from './CartItemView';
 import CartContext from '../../contexts/CartContext';
 import { products } from '../../assets/productsMock/products';
+import { useNavigate } from 'react-router-dom';
 
 const CartList = () => {
   const { cart, setCart } = useContext(CartContext);
-
+  const navigate = useNavigate();
   const removeFromCart = (id: number) => {
     setCart((prev) => prev?.filter((item) => item.id !== id));
   };
@@ -36,7 +37,7 @@ const CartList = () => {
               />
             );
           })}
-          <button className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">
+          <button className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700" onClick={() => navigate('/order')}>
             Checkout
           </button>
         </>
