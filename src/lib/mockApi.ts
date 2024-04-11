@@ -8,7 +8,7 @@ export const getUserProfile = async (): Promise<{ user: Client | Company }> => {
         surname: 'Auditorre',
         name: 'Ezio',
         patronymic: 'Da Firence',
-        phone: 999999999,
+        phone: '999999999',
         email: 'ezio@example.com',
         password: 'strong-password',
         city: 6,

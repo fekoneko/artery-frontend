@@ -1,5 +1,4 @@
 import { AxiosResponse } from 'axios';
-import { LoginCredentials, RegisterCredentials } from './auth';
 import axiosInstance from './axios';
 import { Client, Company } from '../@types/global';
 
@@ -26,19 +25,21 @@ export const handleApiResponse = async (response: AxiosResponse) => {
 };
 
 export const getUserProfile = async (): Promise<{ user: Client | Company }> => {
-  return axiosInstance.get('/api/me').then(handleApiResponse);
+  return axiosInstance.get('/api/me/').then(handleApiResponse);
 };
 
 export const login = <Who extends Client | Company>(
-  data: LoginCredentials,
+  data: [formData: FormData, who: 'client' | 'company'],
 ): Promise<AuthResponse<Who>> => {
-  return axiosInstance.post('/api/login/' + data.who, data).then(handleApiResponse);
+  const [formData, who] = data;
+  return axiosInstance.post('/api/login/' + who + '/', formData).then(handleApiResponse);
 };
 
 export const register = <Who extends Client | Company>(
-  data: RegisterCredentials,
+  data: [formData: FormData, who: 'client' | 'company'],
 ): Promise<AuthResponse<Who>> => {
-  return axiosInstance.post('/api/register/' + data.who, data).then(handleApiResponse);
+  const [formData, who] = data;
+  return axiosInstance.post('/api/register/' + who + '/', formData).then(handleApiResponse);
 };
 
 export const logout = (): void => {

@@ -34,8 +34,13 @@ const LoginForm = ({ who }: LoginFormProps) => {
   const login = useLogin();
 
   const onSubmit = useCallback<SubmitHandler<FormFields>>(
-    (formData) => {
-      login.mutate({ email: formData.email, password: formData.password, who });
+    (data) => {
+      const formData = new FormData();
+      formData.append('who', 'client');
+      formData.append('email', data.email);
+      formData.append('password', data.password);
+
+      login.mutate([formData, who]);
     },
     [login, who],
   );

@@ -61,13 +61,16 @@ const CompanyRegistrationForm = () => {
   const register = useRegister();
 
   const onSubmit = useCallback<SubmitHandler<FormFields>>(
-    (formData) => {
-      register.mutate({
-        email: formData.email,
-        name: formData.name,
-        password: formData.password,
-        who: 'company',
-      });
+    (data) => {
+      const formData = new FormData();
+      formData.append('who', 'client');
+      formData.append('email', data.email);
+      formData.append('password', data.password);
+      formData.append('name', data.name);
+      if (data.description) formData.append('description', data.description);
+      formData.append('phone', data.phone);
+
+      register.mutate([formData, 'company']);
     },
     [register],
   );

@@ -63,7 +63,7 @@ const formFieldData: FormFieldInfo<FormFields>[] = [
     label: 'Ваш город',
     options: { required: requiredMessage },
     getOptions: (search) =>
-      new Promise((resolve) => resolve(search ? [{ value: search, label: search }] : [])),
+      new Promise((resolve) => resolve(search ? [{ value: 1, label: search }] : [])),
     // TODO: Put an actual api fetch here
   },
   {
@@ -78,13 +78,18 @@ const ClientRegistrationForm = () => {
   const register = useRegister();
 
   const onSubmit = useCallback<SubmitHandler<FormFields>>(
-    (formData) => {
-      register.mutate({
-        email: formData.email,
-        name: formData.name,
-        password: formData.password,
-        who: 'client',
-      });
+    (data) => {
+      const formData = new FormData();
+      formData.append('who', 'client');
+      formData.append('email', data.email);
+      formData.append('password', data.password);
+      formData.append('name', data.name);
+      formData.append('surname', data.surname);
+      if (data.patronymic) formData.append('patronymic', data.patronymic);
+      formData.append('city', data.city);
+      formData.append('phone', data.phone);
+
+      register.mutate([formData, 'client']);
     },
     [register],
   );

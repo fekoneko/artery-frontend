@@ -3,7 +3,7 @@ export interface Client {
   surname: string;
   name: string;
   patronymic?: string;
-  phone: number;
+  phone: string;
   email: string;
   password: string;
   image?: string;
@@ -16,7 +16,7 @@ export interface Company {
   name: string;
   email: string;
   password: string;
-  phone: number;
+  phone: string;
   description?: string;
 }
 
