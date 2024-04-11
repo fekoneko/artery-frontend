@@ -3,17 +3,9 @@ import LandingPage from './pages/LandingPage';
 import { useUser } from './lib/auth';
 import LoginPage from './pages/auth/LoginPage';
 import RegistrationPage from './pages/auth/RegistrationPage';
-import NotFoundPage from './pages/main/NotFoundPage';
-import FeedPage from './pages/main/FeedPage';
 import LoadingPage from './pages/LoadingPage';
-import MainLayout from './pages/main/MainLayout';
-import CartPage from './pages/main/CartPage';
-import ProfilePage from './pages/main/ProfilePage';
-import ProductPage from './pages/main/ProductPage';
-import PickPointsPage from './pages/main/PickPointsPage';
-import { CartProvider } from './contexts/CartContext';
-import OrderPage from './pages/main/OrderPage';
-import PaymentPage from './pages/main/PaymentPage';
+import ClientRoutine from './pages/client/ClientRoutine';
+import CompanyRoutine from './pages/company/CompanyRoutine';
 
 const App = () => {
   const user = useUser({ retry: false });
@@ -40,25 +32,7 @@ const App = () => {
         {user.isSuccess && (
           <Route
             path="*"
-            element={
-              <CartProvider>
-                <Routes>
-                  <Route element={<MainLayout />}>
-                    <Route index element={<Navigate to="/feed" />} />
-                    <Route path="/login" element={<Navigate to="/feed" />} />
-                    <Route path="/register" element={<Navigate to="/feed" />} />
-                    <Route path="/feed" element={<FeedPage />} />
-                    <Route path="/product/:id" element={<ProductPage />} />
-                    <Route path="/cart" element={<CartPage />} />
-                    <Route path="/profile" element={<ProfilePage />} />
-                    <Route path="/pickpoints" element={<PickPointsPage />} />
-                    <Route path='/order' element={<OrderPage />} />
-                    <Route path='/payment' element={<PaymentPage />} />
-                    <Route path="*" element={<NotFoundPage />} />
-                  </Route>
-                </Routes>
-              </CartProvider>
-            }
+            element={user.data.who === 'client' ? <ClientRoutine /> : <CompanyRoutine />}
           />
         )}
       </Routes>
