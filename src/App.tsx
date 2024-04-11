@@ -12,6 +12,8 @@ import ProfilePage from './pages/main/ProfilePage';
 import ProductPage from './pages/main/ProductPage';
 import PickPointsPage from './pages/main/PickPointsPage';
 import { CartProvider } from './contexts/CartContext';
+import OrderPage from './pages/main/OrderPage';
+import PaymentPage from './pages/main/PaymentPage';
 
 const App = () => {
   const user = useUser({ retry: false });
@@ -50,6 +52,8 @@ const App = () => {
                     <Route path="/cart" element={<CartPage />} />
                     <Route path="/profile" element={<ProfilePage />} />
                     <Route path="/pickpoints" element={<PickPointsPage />} />
+                    <Route path='/order' element={<OrderPage />} />
+                    <Route path='/payment' element={<PaymentPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                   </Route>
                 </Routes>
