@@ -1,15 +1,12 @@
-import PaymentForm from "../../components/Payment/PaymentForm"
+import PaymentForm from '../../components/Payment/PaymentForm';
 
 const PaymentPage = () => {
-   
   return (
     <div>
-        Paymet page
-        <PaymentForm />
-        
-
+      Paymet page
+      <PaymentForm />
     </div>
-  )
-}
+  );
+};
 
-export default PaymentPage
+export default PaymentPage;
