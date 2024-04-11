@@ -3,25 +3,23 @@ import SeparationLine from '../common/SeparationLine';
 import { animated, useSpring } from 'react-spring';
 import { useMemo } from 'react';
 
-interface Tab {
+export interface NavigationTab {
   title: string;
   link: string;
 }
-const tabs: Tab[] = [
-  { title: 'Главная', link: '/feed' },
-  { title: 'Корзина', link: '/cart' },
-  { title: 'Профиль', link: '/profile' },
-];
 
-const Navigation = () => {
+interface NavigationProps {
+  navigationTabs: NavigationTab[];
+}
+const Navigation = ({ navigationTabs }: NavigationProps) => {
   const location = useLocation();
   const activeIndex = useMemo(
-    () => tabs.findIndex((tab) => location.pathname.includes(tab.link, 0)),
-    [location],
+    () => navigationTabs.findIndex((tab) => location.pathname.includes(tab.link, 0)),
+    [location, navigationTabs],
   );
   const selectorSpring = useSpring({
-    left: `calc((100% + 0.5rem) / ${tabs.length} * ${activeIndex})`,
-    width: `calc((100% + 0.5rem) / ${tabs.length} - 0.5rem)`,
+    left: `calc((100% + 0.5rem) / ${navigationTabs.length} * ${activeIndex})`,
+    width: `calc((100% + 0.5rem) / ${navigationTabs.length} - 0.5rem)`,
   });
 
   return (
@@ -32,10 +30,10 @@ const Navigation = () => {
           <div className="pointer-events-none absolute left-0 top-[calc(-3rem-2px)] z-50 h-10 w-full bg-gradient-to-t from-slate-800/60" />
 
           <ul
-            style={{ gridTemplateColumns: `repeat(${tabs.length}, 1fr)` }}
+            style={{ gridTemplateColumns: `repeat(${navigationTabs.length}, 1fr)` }}
             className="grid size-full grid-flow-col gap-2"
           >
-            {tabs.map((tab) => (
+            {navigationTabs.map((tab) => (
               <li key={tab.title} className="flex">
                 <Link
                   to={tab.link}

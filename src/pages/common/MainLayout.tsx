@@ -1,15 +1,18 @@
 import Header from '../../components/layout/Header';
-import Navigation from '../../components/layout/Navigation';
+import Navigation, { NavigationTab } from '../../components/layout/Navigation';
 import { Outlet } from 'react-router-dom';
 
-const MainLayout = () => {
+interface MainLayoutProps {
+  navigationTabs: NavigationTab[];
+}
+const MainLayout = ({ navigationTabs }: MainLayoutProps) => {
   return (
     <div className="flex size-full flex-col">
       <Header />
       <div className="grow overflow-hidden">
         <Outlet />
       </div>
-      <Navigation />
+      <Navigation navigationTabs={navigationTabs} />
     </div>
   );
 };

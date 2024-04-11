@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
-import { useUser } from './lib/auth';
+import { isClient, useUser } from './lib/auth';
 import LoginPage from './pages/auth/LoginPage';
 import RegistrationPage from './pages/auth/RegistrationPage';
 import LoadingPage from './pages/LoadingPage';
@@ -30,10 +30,7 @@ const App = () => {
         )}
 
         {user.isSuccess && (
-          <Route
-            path="*"
-            element={user.data.who === 'client' ? <ClientRoutine /> : <CompanyRoutine />}
-          />
+          <Route path="*" element={isClient(user.data) ? <ClientRoutine /> : <CompanyRoutine />} />
         )}
       </Routes>
     </div>

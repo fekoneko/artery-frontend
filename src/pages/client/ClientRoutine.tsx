@@ -4,17 +4,24 @@ import MainLayout from '../common/MainLayout';
 import FeedPage from './FeedPage';
 import ProductPage from './ProductPage';
 import CartPage from './CartPage';
-import ProfilePage from './ProfilePage';
+import ProfilePage from '../common/ProfilePage';
 import PickPointsPage from './PickPointsPage';
 import NotFoundPage from '../common/NotFoundPage';
 import OrderPage from './OrderPage';
 import PaymentPage from './PaymentPage';
+import { NavigationTab } from '../../components/layout/Navigation';
+
+const navigationTabs: NavigationTab[] = [
+  { title: 'Главная', link: '/feed' },
+  { title: 'Корзина', link: '/cart' },
+  { title: 'Профиль', link: '/profile' },
+];
 
 const ClientRoutine = () => {
   return (
     <CartProvider>
       <Routes>
-        <Route element={<MainLayout />}>
+        <Route element={<MainLayout navigationTabs={navigationTabs} />}>
           <Route index element={<Navigate to="/feed" />} />
           <Route path="/login" element={<Navigate to="/feed" />} />
           <Route path="/register" element={<Navigate to="/feed" />} />

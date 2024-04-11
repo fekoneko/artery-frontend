@@ -6,7 +6,7 @@ const OrderPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col items-center justify-center gap-3">
+    <main className="flex flex-col items-center justify-center gap-3">
       Order page
       <OrderPrice />
       <OrderCity />
@@ -17,7 +17,7 @@ const OrderPage = () => {
       >
         Confirm order
       </button>
-    </div>
+    </main>
   );
 };
 

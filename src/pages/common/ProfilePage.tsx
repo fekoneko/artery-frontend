@@ -1,19 +1,23 @@
-import { useNavigate } from 'react-router-dom';
-import { useUser } from '../../lib/auth';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { isClient, isCompany, useUser } from '../../lib/auth';
 
 interface Button {
   title: string;
   link: string;
 }
-const buttons: Button[] = [
+const clientButtons: Button[] = [
   { title: 'Корзина', link: '/cart' },
   { title: 'Мои заказы', link: '/orders' },
   { title: 'Пункты выдачи', link: '/pickpoints' },
 ];
 
+const companyButtons: Button[] = [];
+
 const ProfilePage = () => {
   const user = useUser();
   const navigate = useNavigate();
+
+  if (!user.data) return <Navigate to="/" />;
 
   return (
     <main className="flex size-full justify-center px-[12%] py-6">
@@ -22,12 +26,21 @@ const ProfilePage = () => {
           <div className="aspect-square w-24 overflow-hidden rounded-lg border-2 border-slate-600">
             <img className="w-full" />
           </div>
-          <h1 className="text-3xl font-bold">{user.data?.name}</h1>
+
+          <div>
+            {isClient(user.data) && (
+              <h1 className="text-3xl font-bold">
+                {user.data.name} {user.data.surname} {user.data.patronymic}
+              </h1>
+            )}
+            {isCompany(user.data) && <h1 className="text-3xl font-bold">{user.data.name}</h1>}
+            <p>{isClient(user.data) ? 'Покупатель' : 'Организация'}</p>
+          </div>
         </section>
 
         <section className="grow">
           <ul className="flex size-full flex-col gap-4">
-            {buttons.map((button) => (
+            {(isClient(user.data) ? clientButtons : companyButtons).map((button) => (
               <li key={button.title}>
                 <button onClick={() => navigate(button.link)} className="size-full rounded-xl py-3">
                   {button.title}
