@@ -1,27 +1,23 @@
 import { configureAuth } from 'react-query-auth';
-import { getUserProfile, register, login, AuthResponse, logout, FetchError } from './api';
+import { register, login, logout, FetchError } from './api';
 import { Client, Company } from '../@types/global';
 
-const handleUserResponse = async <Who extends Client | Company>(data: AuthResponse<Who>) => {
-  const { jwt, user } = data;
-  if (jwt) localStorage.setItem('accessToken', JSON.stringify(jwt));
-  return user;
-};
+import { getUserProfile } from './mockApi'; // TODO:
 
 const userFn = async () => {
-  const { user } = await getUserProfile();
+  const user = await getUserProfile();
   return user;
 };
 
 const loginFn = async (data: [formData: FormData, who: 'client' | 'company']) => {
-  const response = await login(data);
-  const user = await handleUserResponse(response);
+  await login(data);
+  const user = await getUserProfile();
   return user;
 };
 
 const registerFn = async (data: [formData: FormData, who: 'client' | 'company']) => {
-  const response = await register(data);
-  const user = await handleUserResponse(response);
+  await register(data);
+  const user = await getUserProfile();
   return user;
 };
 

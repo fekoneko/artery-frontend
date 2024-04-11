@@ -11,37 +11,26 @@ export class FetchError extends Error {
   }
 }
 
-export interface AuthResponse<Who extends Client | Company> {
-  user: Who;
-  jwt: string;
-}
-
 export const handleApiResponse = async (response: AxiosResponse) => {
-  if (response.status >= 400)
-    throw new FetchError(response, `The request is rejected with status code ${response.status}`);
-
-  if (response.data?.jwt) localStorage.setItem('accessToken', response.data.jwt);
+  if (response.status >= 400 || response.data.ok === false)
+    throw new FetchError(response.data, `The request was rejected`);
   return response.data;
 };
 
-export const getUserProfile = async (): Promise<{ user: Client | Company }> => {
+export const getUserProfile = async (): Promise<Client | Company> => {
   return axiosInstance.get('/api/me/').then(handleApiResponse);
 };
 
-export const login = <Who extends Client | Company>(
-  data: [formData: FormData, who: 'client' | 'company'],
-): Promise<AuthResponse<Who>> => {
+export const login = (data: [formData: FormData, who: 'client' | 'company']): void => {
   const [formData, who] = data;
-  return axiosInstance.post('/api/login/' + who + '/', formData).then(handleApiResponse);
+  axiosInstance.post('/api/login/' + who + '/', formData).then(handleApiResponse);
 };
 
-export const register = <Who extends Client | Company>(
-  data: [formData: FormData, who: 'client' | 'company'],
-): Promise<AuthResponse<Who>> => {
+export const register = (data: [formData: FormData, who: 'client' | 'company']): void => {
   const [formData, who] = data;
-  return axiosInstance.post('/api/register/' + who + '/', formData).then(handleApiResponse);
+  axiosInstance.post('/api/register/' + who + '/', formData).then(handleApiResponse);
 };
 
 export const logout = (): void => {
-  localStorage.removeItem('accessToken');
+  axiosInstance.post('/api/logout/').then(handleApiResponse);
 };
