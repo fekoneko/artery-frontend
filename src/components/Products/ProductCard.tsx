@@ -32,9 +32,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <p className="relative max-h-36 overflow-hidden [mask:linear-gradient(white_7rem,transparent_9rem)]">
           {product.description}
         </p>
-        <p>
-          Размер/вес: {product.size}/{product.weight}
-        </p>
       </div>
       <p className="font-bold text-emerald-500">{product.price} ₽</p>
     </ActionButton>
