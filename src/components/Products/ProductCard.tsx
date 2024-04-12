@@ -13,6 +13,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
       onClick={() => navigate(`/product/${product.id}`)}
       className="rounded-xlhover:border-emerald-400 flex size-full flex-col items-center gap-2 border-slate-600 pb-3 hover:bg-slate-700/20"
     >
+      <div>
+        {product.company}
+      </div>
       <div className="relative mb-2.5 flex h-48 w-full items-center justify-center overflow-hidden rounded-lg">
         <img
           src={product.image}
@@ -31,6 +34,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <p className="relative max-h-36 overflow-hidden [mask:linear-gradient(white_7rem,transparent_9rem)]">
           {product.description}
         </p>
+        <p>Размер/вес: {product.size}/{product.weight}</p>
       </div>
       <p className="font-bold text-emerald-500">{product.price} ₽</p>
     </ActionButton>
