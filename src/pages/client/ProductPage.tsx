@@ -48,8 +48,10 @@ const ProductPage = () => {
 
           <div className="flex flex-col gap-1">
             <h1 className="text-[2.4rem] font-bold text-slate-300">{product?.name}</h1>
+            <h2>Компания: {product?.company}</h2>
             <p>{product?.price} RUB</p>
             <p>{product?.description}</p>
+            <p>Размер/вес: {product?.size}/{product?.weight}</p>
           </div>
         </div>
       </div>
