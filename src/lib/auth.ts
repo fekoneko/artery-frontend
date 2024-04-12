@@ -2,7 +2,8 @@ import { configureAuth } from 'react-query-auth';
 import { register, login, logout, FetchError } from './api';
 import { Client, Company } from '../@types/global';
 
-import { getUserProfile } from './mockApi'; // TODO:
+// import { getUserProfile } from './mockApi'; // TODO:
+import { getUserProfile } from './api';
 
 const userFn = async () => {
   const user = await getUserProfile();

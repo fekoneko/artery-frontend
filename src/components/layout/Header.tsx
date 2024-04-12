@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
+import { useLogout, useUser } from '../../lib/auth';
 
 const Header = () => {
+  const user = useUser();
+  const logout = useLogout();
+
   return (
     <header className="bg-gradient-green flex items-center justify-between px-[12%] py-2 text-white shadow-lg">
       <h1 className="text-3xl font-bold" role="banner">
@@ -8,7 +12,9 @@ const Header = () => {
           Артерия
         </Link>
       </h1>
-      <button className="size-10 border-white/50"></button>
+      <button className="size-10 border-white/50" onClick={() => logout.mutate({})}>
+        {user.data?.name[0]}
+      </button>
     </header>
   );
 };
