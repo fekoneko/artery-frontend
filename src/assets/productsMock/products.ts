@@ -11,7 +11,7 @@ export const products: Product[] = [
       'https://w7.pngwing.com/pngs/552/703/png-transparent-lord-of-the-ring-ring-the-lord-of-the-rings-the-hobbit-sauron-frodo-baggins-one-ring-lord-ring-gold-dwarf.png',
     size: 50,
     weight: 50,
-    company: 'GenBest',
+    companyId: 1,
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ export const products: Product[] = [
       'https://banner2.cleanpng.com/20190130/wav/kisspng-gollum-the-lord-of-the-rings-character-illustratio-elf-gollum-lord-of-the-ring-smeagol-icon-5c51624358bd59.9231641015488374433635.jpg',
     size: 40,
     weight: 20,
-    company: 'Help ME',
+    companyId: 2,
   },
   {
     id: 3,
@@ -34,8 +34,8 @@ export const products: Product[] = [
       'https://w7.pngwing.com/pngs/552/703/png-transparent-lord-of-the-ring-ring-the-lord-of-the-rings-the-hobbit-sauron-frodo-baggins-one-ring-lord-ring-gold-dwarf.png',
     size: 50,
     weight: 50,
-    company: 'GenBest',
-    },
+    companyId: 1,
+  },
   {
     id: 4,
     name: 'Golumn',
@@ -45,8 +45,8 @@ export const products: Product[] = [
       'https://banner2.cleanpng.com/20190130/wav/kisspng-gollum-the-lord-of-the-rings-character-illustratio-elf-gollum-lord-of-the-ring-smeagol-icon-5c51624358bd59.9231641015488374433635.jpg',
     size: 40,
     weight: 20,
-    company: 'Help ME',
-    },
+    companyId: 2,
+  },
   {
     id: 5,
     name: 'Gold Ring',
@@ -56,8 +56,8 @@ export const products: Product[] = [
       'https://w7.pngwing.com/pngs/552/703/png-transparent-lord-of-the-ring-ring-the-lord-of-the-rings-the-hobbit-sauron-frodo-baggins-one-ring-lord-ring-gold-dwarf.png',
     size: 50,
     weight: 50,
-    company: 'GenBest',
-    },
+    companyId: 1,
+  },
   {
     id: 6,
     name: 'Golumn',
@@ -65,8 +65,8 @@ export const products: Product[] = [
     price: 1235446,
     image:
       'https://banner2.cleanpng.com/20190130/wav/kisspng-gollum-the-lord-of-the-rings-character-illustratio-elf-gollum-lord-of-the-ring-smeagol-icon-5c51624358bd59.9231641015488374433635.jpg',
-      size: 40,
-      weight: 20,
-      company: 'Help ME',
-    },
+    size: 40,
+    weight: 20,
+    companyId: 2,
+  },
 ];

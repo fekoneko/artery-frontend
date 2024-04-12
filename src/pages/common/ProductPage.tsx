@@ -42,6 +42,7 @@ const ProductPage = () => {
             <h1 className="text-[2.4rem] font-bold text-slate-300">{product.name}</h1>
             <p>{product.price} RUB</p>
             <p>{product.description}</p>
+            {/* TODO: place here additional information */}
           </div>
         </div>
       </div>

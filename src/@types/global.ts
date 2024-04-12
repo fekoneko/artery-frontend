@@ -39,7 +39,7 @@ export interface Product {
   image: string;
   size: number;
   weight: number;
-  company: string;
+  companyId: number;
 }
 
 export interface ProductCategory {
