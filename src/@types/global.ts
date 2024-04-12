@@ -10,6 +10,13 @@ export interface Client {
   city: number;
 }
 
+export interface Order {
+  id: number
+  city_start: string
+  city_end: string
+  statuses: string
+}
+
 export interface Company {
   who: 'company';
   image?: string;
