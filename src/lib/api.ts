@@ -250,3 +250,10 @@ export const getProduct = (productId: number): Promise<Product> => {
     .then(handleApiResponse)
     .then((response) => response ?? []); // TODO
 };
+
+export const getAllProducts = (): Promise<Product[]> => {
+  return axiosInstance
+    .get('/api/products/') // TODO
+    .then(handleApiResponse)
+    .then((response) => response ?? []); // TODO
+};

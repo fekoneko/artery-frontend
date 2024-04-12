@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import ProductsList from '../Products/ProductsList';
 import { useUser } from '../../lib/auth';
 import { useEffect, useMemo } from 'react';
-import { products } from '../../assets/productsMock/products';
+import { getCompanyProducts } from '../../lib/api';
 
 interface CompanyProductsProps {
   maxCount?: number;
@@ -10,7 +10,15 @@ interface CompanyProductsProps {
 const CompanyProducts = ({ maxCount }: CompanyProductsProps) => {
   const user = useUser({ retry: 1, retryDelay: 100 });
 
-  const companyProductsQuery = useQuery({ queryKey: ['companyProducts'], queryFn: () => products });
+  const companyProductsQuery = useQuery({
+    queryKey: ['companyProducts'],
+    queryFn: () => {
+      if (!user.data) return undefined;
+      return getCompanyProducts(user.data.id);
+    },
+    refetchOnMount: true,
+  });
+
   const displayedCompanyProducts = useMemo(
     () => companyProductsQuery.data?.slice(0, maxCount),
     [companyProductsQuery.data, maxCount],

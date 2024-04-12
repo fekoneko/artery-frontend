@@ -1,14 +1,24 @@
 import { useParams } from 'react-router-dom';
-import { products } from '../../assets/productsMock/products';
 import { MouseParallaxChild, MouseParallaxContainer } from 'react-parallax-mouse';
 import AddToCartButton from '../../components/Cart/AddToCartButton';
 import { isClient, useUser } from '../../lib/auth';
+import { useQuery } from '@tanstack/react-query';
+import { getProduct } from '../../lib/api';
 
 const ProductPage = () => {
   const user = useUser({ retry: 1, retryDelay: 100 });
   const params = useParams<{ id: string }>();
-  const product = params.id ? products[+params.id - 1] : undefined;
 
+  const productQuery = useQuery({
+    queryKey: ['product'],
+    queryFn: () => {
+      if (!params.id) return undefined;
+      return getProduct(+params.id);
+    },
+    refetchOnMount: true,
+  });
+
+  const product = productQuery.data;
   if (!product) return null;
 
   return (
