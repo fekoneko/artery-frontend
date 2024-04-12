@@ -6,9 +6,9 @@ import MapRoadView from './MapRoadView';
 
 interface MapViewProps {
   terrain: MapTerrain;
-  points: MapPoint[];
-  roads: MapRoad[];
-  path: number[];
+  points?: MapPoint[];
+  roads?: MapRoad[];
+  path?: number[];
 }
 const MapView = ({ terrain, points, roads, path }: MapViewProps) => {
   return (
@@ -21,15 +21,13 @@ const MapView = ({ terrain, points, roads, path }: MapViewProps) => {
         <MapTerrainAreaView key={index} area={area} />
       ))}
 
-      {roads.map((road) => (
-        <MapRoadView key={road.id} road={road} points={points} />
-      ))}
+      {roads &&
+        points &&
+        roads.map((road) => <MapRoadView key={road.id} road={road} points={points} />)}
 
-      <MapPathView path={path} points={points} />
+      {path && points && <MapPathView path={path} points={points} />}
 
-      {points.map((point) => (
-        <MapPointView key={point.id} point={point} />
-      ))}
+      {points?.map((point) => <MapPointView key={point.id} point={point} />)}
     </svg>
   );
 };

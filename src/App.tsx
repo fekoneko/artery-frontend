@@ -8,7 +8,7 @@ import ClientRoutine from './pages/client/ClientRoutine';
 import CompanyRoutine from './pages/company/CompanyRoutine';
 
 const App = () => {
-  const user = useUser({ retry: false });
+  const user = useUser({ retry: 1, retryDelay: 100 });
 
   return (
     <div className="relative h-dvh w-screen overflow-hidden bg-slate-800 text-slate-400">

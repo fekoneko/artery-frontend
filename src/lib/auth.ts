@@ -12,13 +12,17 @@ const userFn = async () => {
 
 const loginFn = async (data: [formData: FormData, who: 'client' | 'company']) => {
   await login(data);
-  const user = await getUserProfile();
+  const user = await new Promise<Promise<Client | Company>>((resolve) =>
+    setTimeout(() => resolve(getUserProfile()), 100),
+  );
   return user;
 };
 
 const registerFn = async (data: [formData: FormData, who: 'client' | 'company']) => {
   await register(data);
-  const user = await getUserProfile();
+  const user = await new Promise<Promise<Client | Company>>((resolve) =>
+    setTimeout(() => resolve(getUserProfile()), 100),
+  );
   return user;
 };
 
@@ -38,5 +42,7 @@ export const { useUser, useLogin, useRegister, useLogout, AuthLoader } = configu
   logoutFn,
 });
 
-export const isClient = (user: Client | Company): user is Client => user.who === 'client';
-export const isCompany = (user: Client | Company): user is Company => user.who === 'company';
+export const isClient = (userData: Client | Company | undefined): userData is Client =>
+  userData?.who === 'client';
+export const isCompany = (userData: Client | Company | undefined): userData is Company =>
+  userData?.who === 'company';

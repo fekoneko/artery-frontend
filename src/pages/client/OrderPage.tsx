@@ -1,26 +1,18 @@
-import { useNavigate } from 'react-router-dom';
-import { formFieldData } from '../../components/Order/OrderCityForm';
+import { mapPath, mapPoints, mapRoads, mapTerrain } from '../../assets/mapMock/map';
+import OrderForm from '../../components/Forms/OrderForm';
+import MapView from '../../components/Map/MapView';
 import OrderPrice from '../../components/Order/OrderPrice';
-import Form from '../../components/Forms/Form';
-
-
 
 const OrderPage = () => {
-  const navigate = useNavigate();
-
   return (
-    <main className="mt-4 flex flex-col items-center justify-center gap-3">
+    <main className="size-full overflow-y-scroll pl-[12%] pr-[calc(12%-0.5rem)]">
       Order page
-      <h2>Заказ будет доставлен через: </h2>
+      <p>Заказ будет доставлен через: </p>
       <OrderPrice />
-      
-      <Form formFieldData={formFieldData} submitTitle='Confirm order' onSubmit={() => navigate('/payment')} />
-      {/* <button
-        className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
-        onClick={() => navigate('/payment')}
-      >
-        Confirm order
-      </button> */}
+      <div>
+        <MapView terrain={mapTerrain} points={mapPoints} roads={mapRoads} path={mapPath} />
+      </div>
+      <OrderForm />
     </main>
   );
 };

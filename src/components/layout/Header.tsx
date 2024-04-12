@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useLogout, useUser } from '../../lib/auth';
 
 const Header = () => {
-  const user = useUser();
+  const user = useUser({ retry: 1, retryDelay: 100 });
   const logout = useLogout();
 
   return (

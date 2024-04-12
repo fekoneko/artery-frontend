@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import CartContext from '../../contexts/CartContext';
 
 const PaymentForm = () => {
+  const { setCart } = useContext(CartContext);
   const [payed, setPayed] = useState(false);
   const onSubmit = () => {
-    setPayed(!payed);
-    localStorage.removeItem('cart');
+    setPayed(true);
+    setCart([]);
   };
 
   return (

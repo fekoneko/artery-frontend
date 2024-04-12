@@ -14,7 +14,7 @@ const clientButtons: Button[] = [
 const companyButtons: Button[] = [];
 
 const ProfilePage = () => {
-  const user = useUser();
+  const user = useUser({ retry: 1, retryDelay: 100 });
   const navigate = useNavigate();
 
   if (!user.data) return <Navigate to="/" />;
