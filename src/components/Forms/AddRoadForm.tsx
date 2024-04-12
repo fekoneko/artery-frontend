@@ -1,6 +1,6 @@
 import { useUser } from '../../lib/auth';
 import Form, { FormFieldInfo } from './Form';
-import { addCompanyRoad } from '../../lib/api';
+import { addCompanyRoad, getAllPoints } from '../../lib/api';
 import { useCallback } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { TransportType } from '../../@types/global';
@@ -21,8 +21,12 @@ const formFieldData: FormFieldInfo<FormFields>[] = [
     label: 'Начальный пункт',
     options: { required: 'Это обязательное поле' },
     getOptions: (search) =>
-      new Promise((resolve) => resolve(search ? [{ value: 1, label: search }] : [])),
-    // TODO: Put an actual api fetch here
+      getAllPoints().then((points) =>
+        (search ? points.filter((point) => point.name.includes(search)) : points).map((point) => ({
+          value: point.id,
+          label: point.name,
+        })),
+      ),
   },
   {
     name: 'endPoint',
@@ -30,8 +34,12 @@ const formFieldData: FormFieldInfo<FormFields>[] = [
     label: 'Конечный пункт',
     options: { required: 'Это обязательное поле' },
     getOptions: (search) =>
-      new Promise((resolve) => resolve(search ? [{ value: 1, label: search }] : [])),
-    // TODO: Put an actual api fetch here
+      getAllPoints().then((points) =>
+        (search ? points.filter((point) => point.name.includes(search)) : points).map((point) => ({
+          value: point.id,
+          label: point.name,
+        })),
+      ),
   },
   {
     name: 'transportType',

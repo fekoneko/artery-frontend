@@ -3,6 +3,7 @@ import { useRegister } from '../../lib/auth';
 import { emailRegExp } from '../../lib/validation';
 import Form, { FormFieldInfo } from './Form';
 import { SubmitHandler } from 'react-hook-form';
+import { getAllPoints } from '../../lib/api';
 
 export interface FormFields {
   email: string;
@@ -63,8 +64,12 @@ const formFieldData: FormFieldInfo<FormFields>[] = [
     label: 'Ваш город',
     options: { required: requiredMessage },
     getOptions: (search) =>
-      new Promise((resolve) => resolve(search ? [{ value: 1, label: search }] : [])),
-    // TODO: Put an actual api fetch here
+      getAllPoints().then((points) =>
+        (search ? points.filter((point) => point.name.includes(search)) : points).map((point) => ({
+          value: point.id,
+          label: point.name,
+        })),
+      ),
   },
   {
     name: 'phone',

@@ -1,6 +1,6 @@
 import { useUser } from '../../lib/auth';
 import Form, { FormFieldInfo } from './Form';
-import { addCompanyPoint } from '../../lib/api';
+import { addCompanyPoint, getAllPoints } from '../../lib/api';
 import { useCallback } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 
@@ -15,8 +15,12 @@ const formFieldData: FormFieldInfo<FormFields>[] = [
     label: 'Выберите город',
     options: { required: 'Это обязательное поле' },
     getOptions: (search) =>
-      new Promise((resolve) => resolve(search ? [{ value: 1, label: search }] : [])),
-    // TODO: Put an actual api fetch here
+      getAllPoints().then((points) =>
+        (search ? points.filter((point) => point.name.includes(search)) : points).map((point) => ({
+          value: point.id,
+          label: point.name,
+        })),
+      ),
   },
 ];
 

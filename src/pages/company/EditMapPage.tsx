@@ -13,7 +13,7 @@ const EditMapPage = () => {
   return (
     <main className="flex size-full flex-col gap-4 overflow-y-scroll py-4 pl-[12%] pr-[calc(12%-0.5rem)]">
       <section>
-        <CompanyMap companyIds={user.data.id} />
+        <CompanyMap companyIds={[user.data.id]} />
       </section>
 
       <section className="flex flex-col gap-3">

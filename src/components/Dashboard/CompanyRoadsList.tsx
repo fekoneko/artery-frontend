@@ -12,8 +12,8 @@ const CompanyRoadsList = () => {
   return (
     <div>
       <ul>
-        {companyRoadsQuery.data?.map((road, index) => (
-          <li key={index} className="flex justify-between">
+        {companyRoadsQuery.data?.map((road) => (
+          <li key={road.id} className="flex justify-between">
             <p>
               {road.startId} - {road.endId}
             </p>
