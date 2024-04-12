@@ -4,15 +4,16 @@ import CartContext from '../../contexts/CartContext';
 
 interface AddToCartButtonProps {
   productId: number;
+  companyId: number;
 }
-const AddToCartButton = ({ productId }: AddToCartButtonProps) => {
+const AddToCartButton = ({ productId, companyId }: AddToCartButtonProps) => {
   const { setCart } = useContext(CartContext);
 
   const addToCard = () => {
     setCart((prev) => {
       if (!prev) return undefined;
       if (prev.findIndex((item) => item.id === productId) !== -1) return prev;
-      return [...prev, { id: productId, quantity: 1 }];
+      return [...prev, { id: productId, companyId, quantity: 1 }];
     });
   };
 

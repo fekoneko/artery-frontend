@@ -7,8 +7,9 @@ import {
   useState,
 } from 'react';
 
-interface CartItem {
+export interface CartItem {
   id: number;
+  companyId: number;
   quantity: number;
 }
 

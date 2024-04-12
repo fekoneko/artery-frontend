@@ -35,7 +35,9 @@ const ProductPage = () => {
                 <div className="absolute size-full bg-slate-600/30" />
               </div>
             </MouseParallaxContainer>
-            {isClient(user.data) && <AddToCartButton productId={product.id} />}
+            {isClient(user.data) && (
+              <AddToCartButton productId={product.id} companyId={product.companyId} />
+            )}
           </div>
 
           <div className="flex flex-col gap-1">

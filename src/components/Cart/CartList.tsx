@@ -14,7 +14,7 @@ const CartList = () => {
   const setQuantity = (id: number, newQuantity: number) =>
     setCart((prev) =>
       prev?.map((item) => {
-        if (item.id === id) return { id, quantity: newQuantity };
+        if (item.id === id) return { ...item, quantity: newQuantity };
         else return item;
       }),
     );
@@ -37,7 +37,10 @@ const CartList = () => {
               />
             );
           })}
-          <button className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700" onClick={() => navigate('/order')}>
+          <button
+            className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+            onClick={() => navigate('/order')}
+          >
             Checkout
           </button>
         </>

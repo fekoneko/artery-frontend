@@ -7,7 +7,7 @@ const PickPointsPage = () => {
     <main className="flex size-full flex-col items-center gap-4 px-[12%] py-4">
       <h1 className="text-3xl font-semibold">Пункты выдачи</h1>
       <div className="grow">
-        <MapView terrain={mapTerrain} points={mapPoints} roads={mapRoads} path={mapPath} />
+        <MapView terrain={mapTerrain} points={mapPoints} roads={mapRoads} paths={[mapPath]} />
       </div>
     </main>
   );

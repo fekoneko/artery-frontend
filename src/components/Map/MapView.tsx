@@ -8,9 +8,9 @@ interface MapViewProps {
   terrain: MapTerrain;
   points?: MapPoint[];
   roads?: MapRoad[];
-  path?: number[];
+  paths?: number[][];
 }
-const MapView = ({ terrain, points, roads, path }: MapViewProps) => {
+const MapView = ({ terrain, points, roads, paths }: MapViewProps) => {
   return (
     <svg
       viewBox={`0 0 ${terrain.width} ${terrain.height}`}
@@ -25,7 +25,9 @@ const MapView = ({ terrain, points, roads, path }: MapViewProps) => {
         points &&
         roads.map((road) => <MapRoadView key={road.id} road={road} points={points} />)}
 
-      {path && points && <MapPathView path={path} points={points} />}
+      {paths &&
+        points &&
+        paths.map((path, index) => <MapPathView key={index} path={path} points={points} />)}
 
       {points?.map((point) => <MapPointView key={point.id} point={point} />)}
     </svg>

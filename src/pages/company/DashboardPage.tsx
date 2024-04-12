@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import CompanyMap from '../../components/Dashboard/CompanyMap';
+import CompanyMap from '../../components/Map/CompanyMap';
 import CompanyProducts from '../../components/Dashboard/ComapnyProducts';
 import { isCompany, useUser } from '../../lib/auth';
 
@@ -24,7 +24,7 @@ const DashboardPage = () => {
 
       <section>
         <h2>Склады и транзиты</h2>
-        <CompanyMap />
+        <CompanyMap companyIds={[user.data.id]} />
         <button onClick={() => navigate('/edit-map')}>Изменить / добавить</button>
       </section>
     </main>
