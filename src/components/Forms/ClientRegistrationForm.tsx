@@ -14,7 +14,7 @@ export interface FormFields {
   patronymic?: string;
   city: string;
   phone: string;
-  // image?: string;
+  image?: string;
 }
 
 const requiredMessage = 'Это обязательное поле';
@@ -77,6 +77,11 @@ const formFieldData: FormFieldInfo<FormFields>[] = [
     label: 'Номер телефона',
     options: { required: requiredMessage },
   },
+  {
+    name: 'image',
+    type: 'url',
+    label: 'Ссылка на аватар',
+  },
 ];
 
 const ClientRegistrationForm = () => {
@@ -93,6 +98,7 @@ const ClientRegistrationForm = () => {
       if (data.patronymic) formData.append('patronymic', data.patronymic);
       formData.append('city', data.city);
       formData.append('phone', data.phone);
+      if (data.image) formData.append('image', data.image);
 
       register.mutate([formData, 'client']);
     },

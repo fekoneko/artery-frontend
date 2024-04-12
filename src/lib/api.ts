@@ -174,7 +174,20 @@ export const getCompanyProducts = (companyId: number): Promise<Product[]> => {
   return axiosInstance
     .post('/api/company/products/', formData)
     .then(handleApiResponse)
-    .then((response) => response ?? []); // TODO
+    .then((response) =>
+      response
+        ? response.map((product: any) => ({
+            id: +product.product_id,
+            name: product.name,
+            description: product.description,
+            price: +product.cost,
+            size: +product.size,
+            weight: +product.weight,
+            companyId: +product.company_id,
+            image: product.image,
+          }))
+        : [],
+    );
 };
 
 export const addCompanyProduct = async (companyId: number, product: Product): Promise<void> => {
@@ -242,19 +255,45 @@ export const getRoutes = (
     .then((response) => response ?? []);
 };
 
-export const getProduct = (productId: number): Promise<Product> => {
+export const getProduct = (productId: number): Promise<Product | undefined> => {
   const formData = new FormData();
   formData.append('product_id', productId.toString());
 
   return axiosInstance
     .post('/api/product/', formData)
     .then(handleApiResponse)
-    .then((response) => response ?? []); // TODO
+    .then((response) =>
+      response
+        ? {
+            id: +response.product_id,
+            name: response.name,
+            description: response.description,
+            price: +response.cost,
+            size: +response.size,
+            weight: +response.weight,
+            companyId: +response.company_id,
+            image: response.image,
+          }
+        : undefined,
+    );
 };
 
 export const getAllProducts = (): Promise<Product[]> => {
   return axiosInstance
-    .get('/api/products/') // TODO
+    .get('/api/products/')
     .then(handleApiResponse)
-    .then((response) => response ?? []); // TODO
+    .then((response) =>
+      response
+        ? response.map((product: any) => ({
+            id: +product.product_id,
+            name: product.name,
+            description: product.description,
+            price: +product.cost,
+            size: +product.size,
+            weight: +product.weight,
+            companyId: +product.company_id,
+            image: product.image,
+          }))
+        : [],
+    );
 };
