@@ -10,7 +10,7 @@ import NotFoundPage from '../common/NotFoundPage';
 import OrderPage from './OrderPage';
 import PaymentPage from './PaymentPage';
 import { NavigationTab } from '../../components/layout/Navigation';
-import OrdersHistory from './OrdersHistory';
+import OrdersHistoryPage from './OrdersHistoryPage';
 
 const navigationTabs: NavigationTab[] = [
   { title: 'Главная', link: '/feed' },
@@ -33,7 +33,7 @@ const ClientRoutine = () => {
           <Route path="/pickpoints" element={<PickPointsPage />} />
           <Route path="/order" element={<OrderPage />} />
           <Route path="/payment" element={<PaymentPage />} />
-          <Route path="/orders" element={<OrdersHistory />} />
+          <Route path="/orders" element={<OrdersHistoryPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

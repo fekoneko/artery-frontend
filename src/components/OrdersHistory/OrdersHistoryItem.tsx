@@ -1,6 +1,6 @@
 import { orders } from '../../assets/OrdersMock/orders';
 
-const HistoryItem = () => {
+const OrdersHistoryItem = () => {
   return (
     <div className="flex flex-col flex-wrap content-center gap-1">
       {orders.map((order) => (
@@ -15,4 +15,4 @@ const HistoryItem = () => {
   );
 };
 
-export default HistoryItem;
+export default OrdersHistoryItem;
