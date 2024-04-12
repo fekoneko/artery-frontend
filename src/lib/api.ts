@@ -185,6 +185,7 @@ export const addCompanyProduct = async (companyId: number, product: Product): Pr
   formData.append('size', product.size.toString());
   formData.append('weight', product.weight.toString());
   formData.append('description', product.description);
+  if (product.image) formData.append('image', product.image);
 
   await axiosInstance.post('/api/company/products/add/', formData).then(handleApiResponse);
 };

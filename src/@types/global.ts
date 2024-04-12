@@ -36,7 +36,7 @@ export interface Product {
   name: string;
   description: string;
   price: number;
-  image: string;
+  image?: string;
   size: number;
   weight: number;
   companyId: number;
