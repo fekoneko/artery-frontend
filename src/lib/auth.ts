@@ -20,6 +20,7 @@ const loginFn = async (data: [formData: FormData, who: 'client' | 'company']) =>
 
 const registerFn = async (data: [formData: FormData, who: 'client' | 'company']) => {
   await register(data);
+  await new Promise<Promise<void>>((resolve) => setTimeout(() => resolve(login(data)), 100));
   const user = await new Promise<Promise<Client | Company>>((resolve) =>
     setTimeout(() => resolve(getUserProfile()), 100),
   );

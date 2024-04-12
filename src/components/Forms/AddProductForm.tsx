@@ -42,7 +42,7 @@ const formFieldData: FormFieldInfo<FormFields>[] = [
   },
   {
     name: 'imagePath',
-    type: 'text ',
+    type: 'text',
     label: 'Фотография товара',
   },
 ];
