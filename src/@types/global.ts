@@ -72,7 +72,7 @@ export interface MapRoad {
   id: number;
   startId: number;
   endId: number;
-  time: number;
+  time: string;
   cost: number;
   distance: number;
   transportType: TransportType;

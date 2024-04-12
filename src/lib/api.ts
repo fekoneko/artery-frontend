@@ -85,9 +85,10 @@ export const getCompanyPoints = (companyId: number): Promise<MapPoint[]> => {
     );
 };
 
-export const addCompanyPoint = async (companyId: number): Promise<void> => {
+export const addCompanyPoint = async (companyId: number, pointId: number): Promise<void> => {
   const formData = new FormData();
   formData.append('company_id', companyId.toString());
+  formData.append('city_id', pointId.toString());
   await axiosInstance.post('/api/company/cities/add/', formData).then(handleApiResponse);
 };
 
@@ -122,9 +123,9 @@ export const getCompanyRoads = (companyId: number): Promise<MapRoad[]> => {
             id: +point.road_id,
             startId: +point.city_start_id,
             endId: +point.city_end_id,
-            time: +point.time,
+            time: point.time,
             cost: +point.cost,
-            distance: +point.distance,
+            distance: +point.length,
             transportType: point.transport_type,
           }))
         : [],
@@ -138,7 +139,7 @@ export const addCompanyRoad = async (companyId: number, road: MapRoad): Promise<
   formData.append('city_end_id', road.endId.toString());
   formData.append('transport_type', road.transportType);
   formData.append('length', road.distance.toString());
-  formData.append('time', road.time.toString());
+  formData.append('time', road.time);
   formData.append('cost', road.cost.toString());
 
   await axiosInstance.post('/api/company/roads/add/', formData).then(handleApiResponse);
