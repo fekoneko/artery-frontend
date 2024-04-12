@@ -5,6 +5,9 @@ import { NavigationTab } from '../../components/layout/Navigation';
 import DashboardPage from './DashboardPage';
 import ProfilePage from '../common/ProfilePage';
 import ProductPage from '../common/ProductPage';
+import MyProductsPage from './MyProductsPage';
+import EditMapPage from './EditMapPage';
+import AddProductPage from './AddProductPage';
 
 const navigationTabs: NavigationTab[] = [
   { title: 'Кабинет продавца', link: '/dashboard' },
@@ -21,6 +24,9 @@ const CompanyRoutine = () => {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/product/:id" element={<ProductPage />} />
+        <Route path="/product/add" element={<AddProductPage />} />
+        <Route path="/products" element={<MyProductsPage />} />
+        <Route path="/edit-map" element={<EditMapPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

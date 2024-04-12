@@ -5,7 +5,7 @@ import { useEffect, useMemo } from 'react';
 import MapView from '../Map/MapView';
 import { mapTerrain } from '../../assets/map';
 
-const DashboardMap = () => {
+const CompanyMap = () => {
   const user = useUser({ retry: 1, retryDelay: 100 });
 
   const allPointsQuery = useQuery({
@@ -49,4 +49,4 @@ const DashboardMap = () => {
 
   return <MapView terrain={mapTerrain} points={mapPoints} roads={companyRoadsQuery.data} />;
 };
-export default DashboardMap;
+export default CompanyMap;
