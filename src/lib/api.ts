@@ -1,6 +1,7 @@
 import { AxiosResponse } from 'axios';
 import axiosInstance from './axios';
 import { Client, Company, MapPoint, MapRoad } from '../@types/global';
+import { mapTerrain } from '../assets/map';
 
 export class FetchError extends Error {
   constructor(
@@ -39,7 +40,17 @@ export const getAllPoints = (): Promise<MapPoint[]> => {
   return axiosInstance
     .get('/api/cities/')
     .then(handleApiResponse)
-    .then((response) => response ?? []);
+    .then((response) =>
+      response
+        ? response.map((point: any) => ({
+            id: +point.city_id,
+            name: point.name,
+            x: +point.x * mapTerrain.width,
+            y: +point.y * mapTerrain.height,
+            isStorage: false,
+          }))
+        : [],
+    );
 };
 
 // I feel guilty about working with this
@@ -49,7 +60,17 @@ export const getCompanyPoints = (companyId: number): Promise<MapPoint[]> => {
   return axiosInstance
     .post('/api/company/cities/', formData)
     .then(handleApiResponse)
-    .then((response) => response ?? []);
+    .then((response) =>
+      response
+        ? response.map((point: any) => ({
+            id: +point.city_id,
+            name: point.name,
+            x: +point.x * mapTerrain.width,
+            y: +point.y * mapTerrain.height,
+            isStorage: true,
+          }))
+        : [],
+    );
 };
 
 export const addCompanyPoint = (companyId: number): void => {
@@ -79,7 +100,19 @@ export const getCompanyRoads = (companyId: number): Promise<MapRoad[]> => {
   return axiosInstance
     .post('/api/company/roads/', formData)
     .then(handleApiResponse)
-    .then((response) => response ?? []);
+    .then((response) =>
+      response
+        ? response.map((point: any) => ({
+            id: +point.road_id,
+            startId: +point.city_start_id,
+            endId: +point.city_end_id,
+            time: +point.time,
+            cost: +point.cost,
+            distance: +point.distance,
+            transportType: point.transport_type,
+          }))
+        : [],
+    );
 };
 
 export const addCompanyRoad = (companyId: number, road: MapRoad): void => {

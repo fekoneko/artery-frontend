@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { CartProvider } from '../../contexts/CartContext';
 import MainLayout from '../common/MainLayout';
 import FeedPage from './FeedPage';
-import ProductPage from './ProductPage';
+import ProductPage from '../common/ProductPage';
 import CartPage from './CartPage';
 import ProfilePage from '../common/ProfilePage';
 import PickPointsPage from './PickPointsPage';
@@ -33,7 +33,7 @@ const ClientRoutine = () => {
           <Route path="/pickpoints" element={<PickPointsPage />} />
           <Route path="/order" element={<OrderPage />} />
           <Route path="/payment" element={<PaymentPage />} />
-          <Route path='/orders' element={<OrdersHistory />} />
+          <Route path="/orders" element={<OrdersHistory />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

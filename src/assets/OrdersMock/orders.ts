@@ -1,28 +1,28 @@
-import { Order } from "../../@types/global";
+import { Order } from '../../@types/global';
 
 export const orders: Order[] = [
-    {
-        id: 1,
-        city_start: 'Moscow',
-        city_end: 'London',
-        statuses: 'CLOSED'
-    },
-    {
-        id: 2,
-        city_start: 'Bryansk',
-        city_end: 'Obninsk',
-        statuses: 'ARRIVED'
-    },
-    {
-        id: 3,
-        city_start: 'Moscow',
-        city_end: 'Bebe_baba',
-        statuses: 'PAYED'
-    },
-    {
-        id: 4,
-        city_start: 'Shir',
-        city_end: 'Mordor',
-        statuses: 'CANCELED'
-    }
-]
+  {
+    id: 1,
+    startPointId: 1,
+    endPointId: 2,
+    status: 'closed',
+  },
+  {
+    id: 2,
+    startPointId: 2,
+    endPointId: 3,
+    status: 'arrived',
+  },
+  {
+    id: 3,
+    startPointId: 3,
+    endPointId: 4,
+    status: 'paid',
+  },
+  {
+    id: 4,
+    startPointId: 4,
+    endPointId: 5,
+    status: 'canceled',
+  },
+];

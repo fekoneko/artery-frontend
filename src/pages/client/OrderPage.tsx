@@ -1,4 +1,5 @@
-import { mapPath, mapPoints, mapRoads, mapTerrain } from '../../assets/mapMock/map';
+import { mapTerrain } from '../../assets/map';
+import { mapPath, mapPoints, mapRoads } from '../../assets/mapMock/map';
 import OrderForm from '../../components/Forms/OrderForm';
 import MapView from '../../components/Map/MapView';
 import OrderPrice from '../../components/Order/OrderPrice';

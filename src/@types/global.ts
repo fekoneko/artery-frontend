@@ -1,5 +1,6 @@
 export interface Client {
   who: 'client';
+  id: number;
   surname: string;
   name: string;
   patronymic?: string;
@@ -10,15 +11,18 @@ export interface Client {
   city: number;
 }
 
+export type OrderStatus = 'processing' | 'paid' | 'went' | 'arrived' | 'closed' | 'canceled';
+
 export interface Order {
-  id: number
-  city_start: string
-  city_end: string
-  statuses: string
+  id: number;
+  startPointId: number;
+  endPointId: number;
+  status: OrderStatus;
 }
 
 export interface Company {
   who: 'company';
+  id: number;
   image?: string;
   name: string;
   email: string;

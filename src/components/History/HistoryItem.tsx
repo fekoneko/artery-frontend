@@ -4,12 +4,11 @@ const HistoryItem = () => {
   return (
     <div className="flex flex-col flex-wrap content-center gap-1">
       {orders.map((order) => (
-        <div className="" key={order.id}>
+        <div key={order.id}>
           <p className="text-xl text-red-300">
-            {' '}
-            {order.city_start} - {order.city_end}{' '}
+            {order.startPointId} - {order.endPointId}
           </p>
-          <span className="text-orange-500"> {order.statuses}</span>
+          <span className="text-orange-500">{order.status}</span>
         </div>
       ))}
     </div>
