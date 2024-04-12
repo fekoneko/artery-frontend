@@ -11,7 +11,10 @@ const clientButtons: Button[] = [
   { title: 'Пункты выдачи', link: '/pickpoints' },
 ];
 
-const companyButtons: Button[] = [];
+const companyButtons: Button[] = [
+  { title: 'Мои товары', link: '/products' },
+  { title: 'Склады и транзиты', link: '/edit-map' },
+];
 
 const ProfilePage = () => {
   const user = useUser({ retry: 1, retryDelay: 100 });
