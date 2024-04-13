@@ -35,16 +35,31 @@ const LandingPage = () => {
           <ActionButton onClick={() => navigate('/feed')}>Поехали</ActionButton>
         </animated.div>
       </header>
+
       <SeparationLine />
 
-      <div className="snap-center">
-        {[0, 0, 0, 0, 0].map((_, index) => (
-          <p key={index} className="px-[12%] py-10 text-2xl font-bold">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo porro officiis quae ea nam
-            voluptate magni veniam beatae architecto ex explicabo cum doloremque recusandae facere
-            nostrum, obcaecati adipisci perspiciatis quis!
-          </p>
-        ))}
+      <div className="mt-6 flex snap-center flex-col px-[12%]">
+        <img src="/landing-screen-1.png" className="self-center px-[12%]" />
+        <p className="px-[12%] py-10 text-center text-2xl font-bold">
+          Огромный выбор товаров и тысячи поставщиков. Здесь найдётся всё: начиная с бытовой техники
+          и заканчивая автомобилями
+        </p>
+      </div>
+
+      <SeparationLine />
+
+      <div className="mt-6 flex snap-center flex-col px-[12%]">
+        <img src="/landing-screen-2.png" className="self-center px-[12%]" />
+        <p className="px-[12%] py-10 text-center text-2xl font-bold">
+          Доставим товар так, как Вам захочется. У нас вы можете легко выбрать склад, маршрут и
+          стоимость доставки
+        </p>
+      </div>
+
+      <div className="mb-20 mt-6 flex snap-center flex-col items-center px-[12%]">
+        <div className="flex w-1/2 flex-col">
+          <ActionButton onClick={() => navigate('/feed')}>Поехали</ActionButton>
+        </div>
       </div>
     </main>
   );
