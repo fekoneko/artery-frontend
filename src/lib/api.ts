@@ -1,14 +1,6 @@
 import { AxiosResponse } from 'axios';
 import axiosInstance from './axios';
-import {
-  Client,
-  Company,
-  MapPoint,
-  MapRoad,
-  Order,
-  Product,
-  TransportType,
-} from '../@types/global';
+import { Client, Company, MapPoint, MapRoad, Order, Product } from '../@types/global';
 import { mapTerrain } from '../assets/map';
 
 export class FetchError extends Error {
@@ -242,7 +234,7 @@ export const makeOrder = async (
 export const getRoutes = (
   clientId: number,
   productId: number,
-  transportType: TransportType,
+  transportType: 'length' | 'time' | 'cost',
 ): Promise<number[][]> => {
   const formData = new FormData();
   formData.append('client_id', clientId.toString());

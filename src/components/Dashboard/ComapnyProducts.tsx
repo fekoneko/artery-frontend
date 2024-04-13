@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import ProductsList from '../Products/ProductsList';
 import { useUser } from '../../lib/auth';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { getCompanyProducts } from '../../lib/api';
 
 interface CompanyProductsProps {
@@ -23,10 +23,6 @@ const CompanyProducts = ({ maxCount }: CompanyProductsProps) => {
     () => companyProductsQuery.data?.slice(0, maxCount),
     [companyProductsQuery.data, maxCount],
   );
-
-  useEffect(() => {
-    if (user.data) companyProductsQuery.refetch();
-  }, [user.data, companyProductsQuery]);
 
   return <ProductsList products={displayedCompanyProducts ?? []} />;
 };

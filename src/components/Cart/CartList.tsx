@@ -1,12 +1,23 @@
 import { useContext } from 'react';
 import CartItemView from './CartItemView';
 import CartContext from '../../contexts/CartContext';
-import { products } from '../../assets/productsMock/products';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { getAllProducts } from '../../lib/api';
 
 const CartList = () => {
   const { cart, setCart } = useContext(CartContext);
   const navigate = useNavigate();
+
+  const productsQuery = useQuery({
+    queryKey: ['products'],
+    queryFn: getAllProducts,
+    refetchOnMount: true,
+  });
+
+  const products = productsQuery.data;
+  if (!products) return null;
+
   const removeFromCart = (id: number) => {
     setCart((prev) => prev?.filter((item) => item.id !== id));
   };
