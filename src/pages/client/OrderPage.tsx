@@ -1,16 +1,19 @@
 import { useContext, useEffect, useMemo, useState } from 'react';
-import OrderForm from '../../components/Forms/OrderForm';
+import ChangeOrderDestinationForm from '../../components/Forms/OrderForm';
 import CompanyMap from '../../components/Map/CompanyMap';
 import OrderPrice from '../../components/Order/OrderPrice';
 import CartContext, { CartItem } from '../../contexts/CartContext';
 import { useQuery } from '@tanstack/react-query';
 import { getRoutes } from '../../lib/api';
 import { useUser } from '../../lib/auth';
+import { useNavigate } from 'react-router-dom';
+import ActionButton from '../../components/common/ActionButton';
 
 const OrderPage = () => {
+  const navigate = useNavigate();
   const user = useUser();
   const { cart } = useContext(CartContext);
-  const [criterea, setCriterea] = useState<'length' | 'time' | 'cost'>('time');
+  const [criterea, setCriterea] = useState<'length' | 'time' | 'cost'>('cost');
 
   const itemsGroupedByCompany = useMemo(
     () =>
@@ -45,23 +48,19 @@ const OrderPage = () => {
 
   return (
     <main className="flex size-full flex-col overflow-y-scroll pl-[12%] pr-[calc(12%-0.5rem)]">
-      <p>Заказ будет доставлен через: </p>
       <OrderPrice />
       <div>
-        <CompanyMap companyIds={companyIds} />
+        <CompanyMap companyIds={companyIds} paths={pathsQuery.data} />
       </div>
-      <button
-        onClick={() =>
-          setCriterea((prev) => (prev === 'cost' ? 'length' : prev === 'length' ? 'time' : 'cost'))
-        }
-      >
+      <button onClick={() => setCriterea((prev) => (prev === 'cost' ? 'length' : 'cost'))}>
         {criterea === 'cost'
           ? 'наиболее дешёвый'
           : criterea === 'length'
             ? 'наиболее короткий'
             : 'наиболее быстрый'}
       </button>
-      <OrderForm />
+      <ChangeOrderDestinationForm />
+      <ActionButton onClick={() => navigate('/payment')}>Перейти к оплате</ActionButton>
     </main>
   );
 };

@@ -52,6 +52,7 @@ export const getAllPoints = (): Promise<MapPoint[]> => {
             x: +point.x * mapTerrain.width,
             y: +point.y * mapTerrain.height,
             isStorage: false,
+            inactive: true,
           }))
         : [],
     );
@@ -71,16 +72,22 @@ export const getCompanyPoints = (companyId: number): Promise<MapPoint[]> => {
             name: point.name,
             x: +point.x * mapTerrain.width,
             y: +point.y * mapTerrain.height,
-            isStorage: true,
+            isStorage: point.is_storage,
+            inactive: false,
           }))
         : [],
     );
 };
 
-export const addCompanyPoint = async (companyId: number, pointId: number): Promise<void> => {
+export const addCompanyPoint = async (
+  companyId: number,
+  pointId: number,
+  isStorage: boolean,
+): Promise<void> => {
   const formData = new FormData();
   formData.append('company_id', companyId.toString());
   formData.append('city_id', pointId.toString());
+  formData.append('is_storage', JSON.stringify(isStorage));
   await axiosInstance.post('/api/company/cities/add/', formData).then(handleApiResponse);
 };
 

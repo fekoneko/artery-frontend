@@ -1,8 +1,8 @@
 import CompanyMap from '../../components/Map/CompanyMap';
 import CompanyRoadsList from '../../components/Dashboard/CompanyRoadsList';
-import CompanyStoragesList from '../../components/Dashboard/CompanyStoragesList';
+import CompanyStoragesList from '../../components/Dashboard/CompanyPointsList';
 import AddRoadForm from '../../components/Forms/AddRoadForm';
-import AddStorageForm from '../../components/Forms/AddStorageForm';
+import AddCompanyPointForm from '../../components/Forms/AddCompanyPointForm';
 import { useUser } from '../../lib/auth';
 
 const EditMapPage = () => {
@@ -23,7 +23,7 @@ const EditMapPage = () => {
 
       <section className="flex flex-col gap-3">
         <h2 className="text-2xl font-bold">Добавить склад</h2>
-        <AddStorageForm />
+        <AddCompanyPointForm />
       </section>
 
       <section className="flex flex-col gap-3">

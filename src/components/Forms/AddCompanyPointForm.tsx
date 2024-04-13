@@ -6,6 +6,7 @@ import { useQueryClient } from '@tanstack/react-query';
 
 export interface FormFields {
   point: string;
+  isStorage: boolean;
 }
 
 const formFieldData: FormFieldInfo<FormFields>[] = [
@@ -22,16 +23,21 @@ const formFieldData: FormFieldInfo<FormFields>[] = [
         })),
       ),
   },
+  {
+    name: 'isStorage',
+    type: 'checkbox',
+    label: 'Сделать складом',
+  },
 ];
 
-const AddStorageForm = () => {
+const AddCompanyPointForm = () => {
   const user = useUser();
   const queryClient = useQueryClient();
 
   const onSubmit = useCallback(
     (data: FormFields) => {
       if (!user.data) return;
-      addCompanyPoint(user.data.id, +data.point);
+      addCompanyPoint(user.data.id, +data.point, data.isStorage);
       setTimeout(() => queryClient.invalidateQueries({ queryKey: ['companyPoints'] }), 100);
     },
     [user.data, queryClient],
@@ -39,6 +45,6 @@ const AddStorageForm = () => {
 
   if (!user.data) return null;
 
-  return <Form formFieldData={formFieldData} submitTitle="Добавить склад" onSubmit={onSubmit} />;
+  return <Form formFieldData={formFieldData} submitTitle="Добавить пункт" onSubmit={onSubmit} />;
 };
-export default AddStorageForm;
+export default AddCompanyPointForm;

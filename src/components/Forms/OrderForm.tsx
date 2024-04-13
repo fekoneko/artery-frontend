@@ -1,6 +1,7 @@
-import { useNavigate } from 'react-router-dom';
 import Form, { FormFieldInfo } from './Form';
-import { getAllPoints } from '../../lib/api';
+import { changeClientCity, getAllPoints } from '../../lib/api';
+import { useUser } from '../../lib/auth';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface FormFields {
   city: string;
@@ -22,15 +23,21 @@ const formFieldData: FormFieldInfo<FormFields>[] = [
   },
 ];
 
-const OrderForm = () => {
-  const navigate = useNavigate();
+const ChangeOrderDestinationForm = () => {
+  const user = useUser();
+  const queryClient = useQueryClient();
+
+  if (!user.data) return null;
 
   return (
     <Form
       formFieldData={formFieldData}
-      submitTitle="Confirm order"
-      onSubmit={() => navigate('/payment')}
+      submitTitle="Сменить город доставки"
+      onSubmit={(data) => {
+        changeClientCity(user.data.id, +data.city);
+        queryClient.invalidateQueries();
+      }}
     />
   );
 };
-export default OrderForm;
+export default ChangeOrderDestinationForm;

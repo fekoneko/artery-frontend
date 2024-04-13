@@ -13,6 +13,6 @@ const MapPathView = ({ path, points }: MapPathViewProps) => {
     })
     .join(' ');
 
-  return <polyline points={pointsString} className="fill-none stroke-teal-200/50 stroke-[0.9]" />;
+  return <polyline points={pointsString} className="fill-none stroke-teal-200/60" />;
 };
 export default MapPathView;

@@ -13,14 +13,20 @@ const MapPointView = ({ point, ...groupProps }: MapPointViewProps & SVGProps<SVG
         r={point.isStorage ? '0.15rem' : '0.12rem'}
         className={
           'transition-colors [:hover>&]:fill-white' +
-          (point.isStorage ? ' fill-emerald-400' : ' fill-sky-400')
+          (point.inactive
+            ? ' fill-gray-500'
+            : point.isStorage
+              ? ' fill-emerald-400'
+              : ' fill-sky-400')
         }
       />
       <circle
         cx={point.x}
         cy={point.y}
         r={point.isStorage ? '0.09rem' : '0.06rem'}
-        className={point.isStorage ? 'fill-emerald-500' : 'fill-sky-500'}
+        className={
+          point.inactive ? 'fill-gray-600' : point.isStorage ? 'fill-emerald-500' : 'fill-sky-500'
+        }
       />
       <text
         x={point.x}

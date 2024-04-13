@@ -1,6 +1,16 @@
-import { products } from '../../assets/productsMock/products';
+import { useQuery } from '@tanstack/react-query';
+import { getAllProducts } from '../../lib/api';
 
 const OrderPrice = () => {
+  const productsQuery = useQuery({
+    queryKey: ['products'],
+    queryFn: getAllProducts,
+    refetchOnMount: true,
+  });
+
+  const products = productsQuery.data;
+  if (!products) return null;
+
   let totalprice = 0;
   const items = JSON.parse(localStorage.getItem('cart') ?? '[]');
 
@@ -10,7 +20,7 @@ const OrderPrice = () => {
     totalprice += item.price * items[i].quantity;
   }
   localStorage.setItem('price', `${totalprice}`);
-  return <div>Цена заказа: {totalprice} RUB</div>;
+  return <p>Цена заказа: {totalprice} RUB</p>;
 };
 
 export default OrderPrice;

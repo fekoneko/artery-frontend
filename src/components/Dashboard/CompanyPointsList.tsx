@@ -15,6 +15,7 @@ const CompanyStoragesList = () => {
         {companyPointsQuery.data?.map((point) => (
           <li key={point.id} className="flex justify-between">
             <p>{point.name}</p>
+            <p>{point.isStorage ? 'Склад' : 'Пункт выдачи'}</p>
             <button
               onClick={() => {
                 removeCompanyPoint(user.data.id, point.id);

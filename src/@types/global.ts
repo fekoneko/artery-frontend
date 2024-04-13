@@ -64,6 +64,7 @@ export interface MapPoint {
   x: number;
   y: number;
   isStorage?: boolean;
+  inactive?: boolean;
 }
 
 export type TransportType = 'car' | 'railway' | 'air' | 'sea' | 'river';
