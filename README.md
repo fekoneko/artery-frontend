@@ -1,5 +1,9 @@
 # Artery Frontend
 
+> React + Typescript + Taillwind + TanStack Query
+
+The project for hackathon. By the way, here's the backend repo -> [artery-backend](https://github.com/kra53n/artery-backend)
+
 ## Getting started
 
 Everything's very simple:
