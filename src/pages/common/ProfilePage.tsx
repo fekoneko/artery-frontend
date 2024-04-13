@@ -27,7 +27,7 @@ const ProfilePage = () => {
       <div className="flex w-2/3 max-w-[30rem] flex-col gap-4">
         <section className="flex items-center gap-6 rounded-xl border-2 border-emerald-500 p-3">
           <div className="aspect-square w-24 overflow-hidden rounded-lg border-2 border-slate-600">
-            <img className="w-full" />
+            <img className="w-full" src={user.data.image} />
           </div>
 
           <div>
