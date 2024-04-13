@@ -60,7 +60,13 @@ const OrderPage = () => {
             : 'наиболее быстрый'}
       </button>
       <ChangeOrderDestinationForm />
-      <ActionButton onClick={() => navigate('/payment')}>Перейти к оплате</ActionButton>
+      {pathsQuery.data && cart && (
+        <ActionButton
+          onClick={() => navigate(`/payment?s=${pathsQuery.data[0][0]}&p=${cart[0].id}`)}
+        >
+          Перейти к оплате
+        </ActionButton>
+      )}
     </main>
   );
 };

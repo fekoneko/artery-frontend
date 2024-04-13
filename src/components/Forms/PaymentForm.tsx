@@ -1,11 +1,20 @@
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import CartContext from '../../contexts/CartContext';
+import { makeOrder } from '../../lib/api';
+import { useUser } from '../../lib/auth';
 
 const PaymentForm = () => {
   const { setCart } = useContext(CartContext);
+  const user = useUser();
   const [payed, setPayed] = useState(false);
+  const [searchParams] = useSearchParams();
+
   const onSubmit = () => {
+    const startId = searchParams.get('s');
+    const productId = searchParams.get('p');
+    if (!user.data || !startId || !productId) return;
+    makeOrder(user.data.id, +startId, +productId);
     setPayed(true);
     setCart([]);
   };
